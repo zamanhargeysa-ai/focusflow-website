@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FocusFlow — Build Better Habits. Accomplish More.</title>
+<meta name="description" content="Free habit tracker + premium productivity templates. $1-$20. No subscription."/>
+<meta property="og:title" content="FocusFlow — Build Better Habits. Accomplish More."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg2:#F2F0EA;--bg3:#E8E4DA;--bg4:#DEDBD2;
+  --ink:#111111;--ink2:#3A3830;--ink3:#7A7468;--ink4:#A8A098;
+  --acc:#7BBE6A;--acc2:#5A9E4A;--acc3:#3D7A32;--acc-bg:#EAF5E6;
+  --amb:#C8861A;--amb2:#A06810;--amb-bg:#FBF0DC;
+  --red:#C0392B;--red-bg:#FDECEA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;
+  --bdr:rgba(17,17,17,.09);--bdr2:rgba(17,17,17,.05);--bdr3:rgba(17,17,17,.15);
+  --r:14px;--r2:20px;--r3:28px;
+  --sh:0 1px 8px rgba(17,17,17,.06),0 4px 16px rgba(17,17,17,.05);
+  --sh2:0 8px 32px rgba(17,17,17,.10);--sh3:0 20px 60px rgba(17,17,17,.14);
+  --fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif;
+}
+.dark{--bg:#0F0F0D;--bg2:#161614;--bg3:#1E1E1A;--bg4:#262620;--ink:#F5F4F0;--ink2:#D0CEC8;--ink3:#888078;--bdr:rgba(245,244,240,.09);--bdr2:rgba(245,244,240,.05);--bdr3:rgba(245,244,240,.15)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:99px}
+section{padding:88px 5%}
+.wrap{max-width:1160px;margin:0 auto}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+h1,h2,h3,h4{font-family:var(--fh);letter-spacing:-.02em;line-height:1.1}
+h1{font-size:clamp(42px,5.5vw,76px);font-weight:800}
+h2{font-size:clamp(28px,3.5vw,50px);font-weight:700}
+h3{font-size:clamp(17px,2vw,22px);font-weight:700}
+p{color:var(--ink2);line-height:1.72}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:99px;margin-bottom:18px}
+.chip-g{color:var(--acc2);background:var(--acc-bg)}.chip-a{color:var(--amb);background:var(--amb-bg)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:99px;font-size:14px;font-weight:600;font-family:var(--fb);text-decoration:none;border:none;cursor:pointer;transition:transform .15s,background .2s,box-shadow .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--bg)}.btn-dark:hover{background:var(--ink2);box-shadow:var(--sh2)}
+.btn-acc{background:var(--acc);color:#fff}.btn-acc:hover{background:var(--acc2)}
+.btn-outline{background:transparent;color:var(--ink2);border:1.5px solid var(--bdr3)}.btn-outline:hover{border-color:var(--ink2);background:var(--bg2)}
+.btn-ghost{background:transparent;color:var(--ink3);border:none;padding:8px 14px;font-size:13px}.btn-ghost:hover{color:var(--ink);background:var(--bg2)}
+.btn-red{background:var(--red-bg);color:var(--red)}.btn-red:hover{background:#FAD7D3}
+.btn-lg{padding:15px 32px;font-size:16px}.btn-sm{padding:8px 16px;font-size:12px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+/* ANN */
+#ann-bar{background:var(--ink);color:#fff;text-align:center;padding:10px 20px;font-size:13px;font-weight:500;position:relative;z-index:300}
+#ann-bar a{color:var(--acc);font-weight:700;text-decoration:none;margin-left:6px}
+.ann-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:18px;padding:3px 7px;font-family:var(--fb)}
+.ann-x:hover{color:#fff}
+/* NAV */
+#nav{position:sticky;top:0;z-index:200;background:rgba(250,250,247,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;transition:box-shadow .3s,background .3s}
+.dark #nav{background:rgba(15,15,13,.93)}
+#nav.sc{box-shadow:var(--sh)}
+.logo{font-family:var(--fh);font-size:21px;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:7px}
+.logo-dot{width:8px;height:8px;background:var(--acc);border-radius:50%}
+.nlinks{display:flex;gap:4px;list-style:none}
+.nlinks a{font-size:14px;font-weight:500;color:var(--ink3);text-decoration:none;padding:7px 12px;border-radius:8px;transition:color .2s,background .2s}
+.nlinks a:hover{color:var(--ink);background:var(--bg2)}
+.nav-r{display:flex;align-items:center;gap:10px}
+.free-badge{font-size:10px;font-weight:700;color:var(--acc2);background:var(--acc-bg);padding:2px 7px;border-radius:99px;margin-left:3px}
+.nav-mob{display:none;background:none;border:1.5px solid var(--bdr3);border-radius:8px;cursor:pointer;padding:7px 9px;flex-direction:column;gap:4px}
+.nav-mob span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px}
+#mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--bdr);padding:16px 5%;z-index:199;box-shadow:var(--sh2)}
+#mob-menu.open{display:block}
+#mob-menu ul{list-style:none;display:flex;flex-direction:column;gap:3px;margin-bottom:14px}
+#mob-menu a{display:block;padding:10px 14px;font-size:15px;font-weight:500;color:var(--ink2);text-decoration:none;border-radius:10px}
+#mob-menu a:hover{background:var(--bg2);color:var(--ink)}
+.mob-btns{display:flex;gap:10px;flex-wrap:wrap}
+/* HERO */
+#hero{padding:64px 5% 56px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(123,190,106,.08) 0%,transparent 65%);pointer-events:none}
+.hpill{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--bdr3);padding:6px 14px 6px 8px;border-radius:99px;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:20px}
+.hpdot{width:7px;height:7px;border-radius:50%;background:var(--acc);animation:pu 2s infinite}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-h1 em{font-style:italic;color:var(--acc)}
+.hsub{font-size:17px;max-width:460px;margin-bottom:28px;color:var(--ink2)}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.trust{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.tri{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink3)}
+.tsep{width:3px;height:3px;background:var(--bdr3);border-radius:50%}
+/* DASH */
+.dash{background:var(--ink);border-radius:20px;padding:20px;box-shadow:var(--sh3)}
+.dark .dash{background:#1A1A18;border:1px solid rgba(255,255,255,.07)}
+.dbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ddots{display:flex;gap:5px}.ddot{width:9px;height:9px;border-radius:50%}
+.dlbl{font-size:11px;font-weight:600;color:rgba(255,255,255,.35);font-family:var(--fb)}
+.dsts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:12px}
+.dst{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:11px}
+.dstl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px}
+.dstv{font-family:var(--fh);font-size:20px;font-weight:800;color:#fff}
+.dhabs{margin-bottom:11px}
+.dhr{display:flex;align-items:center;gap:7px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.dhr:last-child{border:none}
+.dhdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dhn{font-size:11px;color:rgba(255,255,255,.6);flex:1;font-family:var(--fb)}
+.dhbar{flex:2;height:3px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.dhf{height:100%;border-radius:99px}
+.dhp{font-size:10px;font-weight:600;color:rgba(255,255,255,.35);min-width:26px;text-align:right}
+.dch{background:rgba(255,255,255,.04);border-radius:9px;padding:11px}
+.dcl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
+.dcbs{display:flex;align-items:flex-end;gap:3px;height:36px}
+.dcb{flex:1;border-radius:2px 2px 0 0}
+.fw{position:absolute;background:var(--bg);border-radius:12px;box-shadow:var(--sh2);padding:10px 13px;display:flex;align-items:center;gap:8px;border:1px solid var(--bdr)}
+.fw1{top:-16px;right:-20px;animation:fl 4s ease-in-out infinite}
+.fw2{bottom:16px;left:-28px;animation:fl 4s ease-in-out infinite;animation-delay:1.8s}
+.fwi{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.fwtx{font-size:12px;font-weight:700;color:var(--ink)}
+.fwsb{font-size:10px;color:var(--ink3)}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+/* PRODUCTS */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pcard{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r2);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s}
+.pcard:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.pimg{height:180px;display:flex;align-items:center;justify-content:center;font-size:56px}
+.pbdg{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.pb-g{color:var(--acc2);background:var(--acc-bg)}.pb-a{color:var(--amb);background:var(--amb-bg)}
+.pb-p{color:#7A3BB8;background:#EDE0FA}.pb-b{color:var(--blue);background:var(--blue-bg)}
+.pbody{padding:20px;flex:1;display:flex;flex-direction:column}
+.pcard h3{font-size:18px;margin-bottom:7px}
+.pdesc{font-size:13px;color:var(--ink3);margin-bottom:12px;flex:1;line-height:1.6}
+.pfl{list-style:none;margin-bottom:16px;display:flex;flex-direction:column;gap:4px}
+.pfl li{font-size:12px;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.pfl li::before{content:'✓';color:var(--acc2);font-weight:700;font-size:11px;flex-shrink:0}
+.ppr{display:flex;align-items:baseline;gap:7px;margin-bottom:14px}
+.ppv{font-family:var(--fh);font-size:26px;font-weight:800}
+.ppo{font-size:13px;color:var(--ink4);text-decoration:line-through}
+.ppfree{font-family:var(--fh);font-size:22px;font-weight:800;color:var(--acc2)}
+/* FEATURES */
+.fcard{padding:24px;border:1px solid var(--bdr);border-radius:var(--r2);background:var(--bg);transition:background .2s,transform .2s,box-shadow .2s}
+.fcard:hover{background:var(--bg2);transform:translateY(-3px);box-shadow:var(--sh)}
+.fico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:15px}
+.fcard h3{font-size:17px;margin-bottom:8px}.fcard p{font-size:13px;color:var(--ink3);line-height:1.65}
+/* WHY */
+.wblk{padding:32px;background:var(--bg);border-radius:var(--r2);border:1px solid var(--bdr);transition:border-color .2s,box-shadow .2s}
+.wblk:hover{border-color:var(--bdr3);box-shadow:var(--sh)}
+.wnum{font-family:var(--fh);font-size:48px;font-weight:800;color:var(--acc);opacity:.25;line-height:1;margin-bottom:10px}
+.wblk h3{font-size:20px;margin-bottom:10px}.wblk p{font-size:14px;color:var(--ink3);line-height:1.7}
+/* BUNDLE */
+#bundle{background:var(--ink);padding:88px 5%}
+.dark #bundle{background:#0D1A0D}
+#bundle .chip{background:rgba(123,190,106,.15);color:#7BBE6A}
+#bundle h2{color:#fff}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;margin-top:44px}
+.bvis{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--r2);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.bitm{background:rgba(255,255,255,.07);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px;transition:background .2s}
+.bitm:hover{background:rgba(255,255,255,.11)}
+.bnm{font-size:13px;font-weight:600;color:#fff}
+.bprw{display:flex;align-items:baseline;gap:10px;margin:14px 0}
+.bpv{font-family:var(--fh);font-size:48px;font-weight:800;color:#fff}
+.bpo{font-size:20px;color:rgba(255,255,255,.35);text-decoration:line-through}
+.blist{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.blist li{font-size:14px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:8px}
+.blist li::before{content:'✓';color:var(--acc);font-weight:700}
+/* TESTIMONIALS */
+.tcard{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r2);padding:24px;transition:transform .2s,box-shadow .2s}
+.tcard:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.tstars{color:#F59E0B;font-size:13px;margin-bottom:12px}
+.ttxt{font-size:13px;color:var(--ink2);line-height:1.72;margin-bottom:16px;font-style:italic}
+.tauth{display:flex;align-items:center;gap:10px}
+.tav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
+.tnm{font-size:13px;font-weight:600;color:var(--ink)}.trole{font-size:11px;color:var(--ink3)}
+/* STATS */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--r2);overflow:hidden}
+.sitm{background:var(--bg);padding:40px 24px;text-align:center;transition:background .2s}
+.sitm:hover{background:var(--bg2)}
+.snum{font-family:var(--fh);font-size:42px;font-weight:800;line-height:1;margin-bottom:6px}
+.snum em{color:var(--acc);font-style:normal}
+.slbl{font-size:13px;color:var(--ink3);font-weight:500}
+/* PRICING */
+.prgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:860px}
+.prcard{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r2);padding:32px 24px;position:relative;transition:transform .2s,box-shadow .2s}
+.prcard:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.prcard.feat{background:var(--ink);border-color:var(--ink);transform:scale(1.03)}
+.prcard.feat:hover{transform:scale(1.03) translateY(-4px)}
+.dark .prcard.feat{background:#1A2E1A;border-color:var(--acc2)}
+.prcard.feat h3,.prcard.feat .prv{color:#fff}
+.prcard.feat .prper,.prcard.feat .prtier{color:rgba(255,255,255,.4)}
+.prcard.feat .prf li{color:rgba(255,255,255,.7)}.prcard.feat .prf li::before{color:var(--acc)}
+.prpop{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--acc);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 14px;border-radius:99px;white-space:nowrap}
+.prtier{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.prcard h3{font-size:22px;margin-bottom:6px}.prv{font-family:var(--fh);font-size:44px;font-weight:800;line-height:1}
+.prper{font-size:11px;color:var(--ink3);margin-bottom:20px}
+.prf{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.prf li{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:7px}
+.prf li::before{content:'✓';color:var(--acc2);font-weight:700;flex-shrink:0}
+.prbd{display:block;text-align:center;background:rgba(255,255,255,.1);color:#fff;padding:11px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;border:none;width:100%;font-family:var(--fb);transition:background .2s}.prbd:hover{background:rgba(255,255,255,.18)}
+.prbl{display:block;text-align:center;background:var(--ink);color:var(--bg);padding:11px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;border:none;width:100%;font-family:var(--fb);transition:background .2s}.prbl:hover{background:var(--ink2)}
+/* FAQ */
+.faqw{max-width:720px}
+.faqi{border-bottom:1px solid var(--bdr)}
+.faqb{width:100%;background:none;border:none;text-align:left;padding:18px 0;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:var(--fb);transition:color .2s}
+.faqb:hover{color:var(--acc2)}.faqb::after{content:'+';font-size:18px;font-weight:300;color:var(--ink3);flex-shrink:0;transition:transform .25s,color .2s}
+.faqi.open .faqb::after{transform:rotate(45deg);color:var(--acc2)}
+.faqa{font-size:13px;color:var(--ink3);line-height:1.72;max-height:0;overflow:hidden;transition:max-height .35s ease,padding-bottom .35s}
+.faqi.open .faqa{max-height:240px;padding-bottom:16px}
+/* FREE TRACKER */
+#tracker{background:var(--bg2)}
+.trk-app{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r3);overflow:hidden;box-shadow:var(--sh2)}
+.trk-hdr{background:var(--ink);padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+.dark .trk-hdr{background:#1A2E1A}
+.trk-logo{font-family:var(--fh);font-size:15px;font-weight:800;color:#fff}
+.trk-logo span{color:var(--acc)}
+.trk-body{padding:22px}
+.tabs{display:flex;gap:6px;margin-bottom:18px;background:var(--bg2);padding:4px;border-radius:10px;width:fit-content}
+.tab{padding:7px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink3);transition:all .2s;border:none;background:none;font-family:var(--fb)}
+.tab.act{background:var(--bg);color:var(--ink);box-shadow:var(--sh)}
+.hlist{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.hrow{background:var(--bg2);border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:12px;transition:background .2s}
+.hrow:hover{background:var(--bg3)}
+.hchk{width:22px;height:22px;border-radius:6px;border:2px solid var(--bdr3);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:12px;user-select:none}
+.hchk.done{background:var(--acc);border-color:var(--acc);color:#fff}
+.hnm{flex:1;font-size:14px;font-weight:500;color:var(--ink)}
+.hstrk{font-size:11px;font-weight:700;color:var(--amb);background:var(--amb-bg);padding:2px 8px;border-radius:99px}
+.hdel{background:none;border:none;color:var(--ink4);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:6px;transition:all .2s;font-family:var(--fb)}
+.hdel:hover{background:var(--red-bg);color:var(--red)}
+.add-form{display:flex;gap:8px}
+.add-inp{flex:1;padding:10px 14px;border:1.5px solid var(--bdr);border-radius:10px;font-size:14px;font-family:var(--fb);outline:none;background:var(--bg);color:var(--ink);transition:border-color .2s}
+.add-inp:focus{border-color:var(--acc)}
+.cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-nav{background:none;border:1.5px solid var(--bdr);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:14px;color:var(--ink2);font-family:var(--fb);transition:all .2s}
+.cal-nav:hover{border-color:var(--ink2)}
+.cg7{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:7px}
+.cdlbl{text-align:center;font-size:10px;font-weight:700;color:var(--ink3);padding:3px 0}
+.cday{aspect-ratio:1;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--ink2);background:var(--bg2);cursor:pointer;transition:all .2s;position:relative}
+.cday:hover{background:var(--bg3)}.cday.today{background:var(--acc-bg);color:var(--acc2);font-weight:700}
+.cday.hd::after{content:'';position:absolute;bottom:3px;width:4px;height:4px;background:var(--acc);border-radius:50%}
+.cday.emp{background:transparent;cursor:default}
+.stcards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:18px}
+.stc{background:var(--bg2);border-radius:11px;padding:14px;text-align:center}
+.stcv{font-family:var(--fh);font-size:26px;font-weight:800;color:var(--ink);margin-bottom:3px}
+.stcl{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:.04em;text-transform:uppercase}
+.hbars{display:flex;flex-direction:column;gap:9px}
+.hbrow{display:flex;align-items:center;gap:10px}
+.hbname{font-size:13px;font-weight:500;color:var(--ink2);width:120px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbbar{flex:1;height:7px;background:var(--bg3);border-radius:99px;overflow:hidden}
+.hbfill{height:100%;border-radius:99px;background:var(--acc);transition:width .6s ease}
+.hbpct{font-size:11px;font-weight:600;color:var(--ink3);width:30px;text-align:right}
+/* PAYMENT MODAL */
+.mover{display:none;position:fixed;inset:0;background:rgba(17,17,17,.6);backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.mover.open{display:flex}
+.modal{background:var(--bg);border-radius:var(--r2);padding:32px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--sh3)}
+.mclose{position:absolute;top:14px;right:14px;background:var(--bg2);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:all .2s;font-family:var(--fb)}
+.mclose:hover{background:var(--bg3);color:var(--ink)}
+.modal h3{font-size:21px;margin-bottom:7px}.msub{font-size:13px;color:var(--ink3);margin-bottom:20px;line-height:1.6}
+.pmethods{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
+.pmethod{background:var(--bg2);border:2px solid var(--bdr);border-radius:11px;padding:13px;cursor:pointer;transition:all .2s;text-align:center}
+.pmethod:hover{border-color:var(--bdr3)}.pmethod.sel{border-color:var(--acc);background:var(--acc-bg)}
+.pmico{font-size:22px;margin-bottom:5px}.pmnm{font-size:13px;font-weight:600;color:var(--ink)}.pmsub{font-size:11px;color:var(--ink3)}
+.pinst{background:var(--bg2);border-radius:11px;padding:14px;margin-bottom:16px;display:none}
+.pinst.show{display:block}
+.pintitle{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.pinnum{font-family:var(--fh);font-size:18px;font-weight:800;color:var(--acc2);background:var(--acc-bg);padding:7px 12px;border-radius:8px;margin-bottom:7px;display:inline-block;word-break:break-all}
+.pinnote{font-size:12px;color:var(--ink3);line-height:1.6}
+.ff{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.ff label{font-size:12px;font-weight:600;color:var(--ink2)}
+.ff input,.ff textarea,.ff select{padding:10px 13px;border:1.5px solid var(--bdr);border-radius:9px;font-size:14px;font-family:var(--fb);outline:none;background:var(--bg);color:var(--ink);transition:border-color .2s;width:100%}
+.ff input:focus,.ff textarea:focus{border-color:var(--acc)}.ff textarea{min-height:70px;resize:vertical}
+.psuccess{text-align:center;padding:20px 0;display:none}
+/* CONTACT */
+.ctgrid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.ctinfo h2{margin-bottom:12px}.ctinfo p{font-size:16px;margin-bottom:24px}
+.ctmeths{display:flex;flex-direction:column;gap:12px}
+.ctm{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--bg2);border-radius:11px;text-decoration:none;transition:background .2s,transform .2s}
+.ctm:hover{background:var(--bg3);transform:translateX(3px)}
+.ctmico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.ctml{font-size:13px;font-weight:600;color:var(--ink)}.ctmsub{font-size:11px;color:var(--ink3)}
+.ctfw{background:var(--bg2);border-radius:var(--r2);padding:28px;border:1px solid var(--bdr)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.fsuc{background:var(--acc-bg);border:1px solid rgba(90,158,74,.3);border-radius:9px;padding:12px 14px;margin-bottom:14px;display:none;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--acc3)}
+.fsuc.show{display:flex}
+/* NL */
+.nlbox{max-width:480px;margin:0 auto;text-align:center}
+.nlform{display:flex;gap:8px;margin:22px auto 0;max-width:360px}
+.nlform input{flex:1;padding:12px 16px;border-radius:99px;border:1.5px solid var(--bdr);background:var(--bg);font-size:14px;font-family:var(--fb);outline:none;transition:border-color .2s;color:var(--ink)}
+.nlform input:focus{border-color:var(--acc)}
+/* FINAL CTA */
+#fcta{text-align:center;padding:110px 5%;position:relative;overflow:hidden}
+#fcta::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(123,190,106,.06) 0%,transparent 60%);pointer-events:none}
+#fcta h2{font-size:clamp(30px,5vw,58px);max-width:600px;margin:0 auto 12px}
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.5);padding:56px 5% 28px}
+.dark footer{background:#0A0A08}
+.ftg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ftbl{font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.ftbldot{width:7px;height:7px;background:var(--acc);border-radius:50%}
+.ftbrand p{font-size:13px;line-height:1.7;max-width:230px}
+.ftcol h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:13px}
+.ftcol ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ftcol a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.ftcol a:hover{color:#fff}
+.ftbot{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ftbot p{font-size:12px}
+.ftsoc{display:flex;gap:9px}
+.socb{width:31px;height:31px;background:rgba(255,255,255,.07);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;font-weight:700;transition:background .2s,color .2s}
+.socb:hover{background:var(--acc);color:#fff}
+#maint-note{text-align:center;font-size:11px;color:rgba(255,255,255,.3);margin-top:8px}
+/* MAINTENANCE */
+#maint-sc{display:none;position:fixed;inset:0;background:var(--ink);z-index:9998;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px}
+#maint-sc.show{display:flex}
+.maint-h{font-family:var(--fh);font-size:36px;font-weight:800;color:#fff;margin-bottom:12px}
+.maint-p{font-size:16px;color:rgba(255,255,255,.5);max-width:400px;margin-bottom:28px}
+.maint-inp{padding:11px 16px;border-radius:10px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);font-size:14px;font-family:var(--fb);outline:none;color:#fff;width:220px;margin-bottom:10px}
+.maint-inp::placeholder{color:rgba(255,255,255,.3)}.maint-inp:focus{border-color:var(--acc)}
+/* LOGIN */
+#login-sc{display:none;position:fixed;inset:0;background:rgba(17,17,17,.65);backdrop-filter:blur(8px);z-index:10000;align-items:center;justify-content:center;padding:20px}
+#login-sc.open{display:flex}
+.lcrd{background:var(--bg);border-radius:var(--r2);padding:38px;width:100%;max-width:360px;box-shadow:var(--sh3)}
+.llogo{font-family:var(--fh);font-size:21px;font-weight:800;text-align:center;margin-bottom:5px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:7px}
+.lsub{text-align:center;font-size:14px;color:var(--ink3);margin-bottom:26px}
+.lerr{background:var(--red-bg);color:var(--red);padding:9px 13px;border-radius:9px;font-size:13px;margin-bottom:13px;display:none;font-weight:500}
+/* ADMIN */
+#adm-ov{display:none;position:fixed;inset:0;z-index:9999;background:var(--bg);overflow-y:auto}
+#adm-ov.open{display:block}
+.awrap{display:grid;grid-template-columns:222px 1fr;min-height:100vh}
+.aside{background:var(--ink);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.dark .aside{background:#0D1A0D;border-right:1px solid rgba(255,255,255,.06)}
+.aside-hdr{padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.alogo{font-family:var(--fh);font-size:16px;font-weight:800;color:#fff;display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.alogo span{color:var(--acc)}.asub{font-size:11px;color:rgba(255,255,255,.3)}
+.anav{list-style:none;padding:10px 8px;flex:1}
+.anav li{margin-bottom:1px}
+.anav a{display:flex;align-items:center;gap:8px;padding:9px 11px;font-size:13px;font-weight:500;color:rgba(255,255,255,.45);text-decoration:none;transition:all .2s;border-radius:8px;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--fb)}
+.anav a:hover,.anav a.act{color:#fff;background:rgba(255,255,255,.08)}
+.nico{font-size:15px;width:19px;text-align:center;flex-shrink:0}
+.aside-bot{padding:12px 8px;border-top:1px solid rgba(255,255,255,.08)}
+.amain{padding:28px;background:var(--bg);min-height:100vh}
+.ahdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--bdr)}
+.ahdr h1{font-size:21px;font-weight:700}
+.apanel{display:none}.apanel.act{display:block}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px}
+.kpi{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r2);padding:18px;transition:box-shadow .2s}
+.kpi:hover{box-shadow:var(--sh)}.kpil{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px}
+.kpiv{font-family:var(--fh);font-size:28px;font-weight:800;color:var(--ink);margin-bottom:3px}
+.kpis2{font-size:11px;color:var(--acc2);font-weight:500}
+.asect{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r2);padding:22px;margin-bottom:18px}
+.asect-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--bdr)}
+.asect h3{font-size:14px;font-weight:700;margin:0}
+.atbl{width:100%;border-collapse:collapse;font-size:12px}
+.atbl th{text-align:left;padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border-bottom:1px solid var(--bdr)}
+.atbl td{padding:10px;border-bottom:1px solid var(--bdr2);color:var(--ink2);vertical-align:middle}
+.atbl tr:last-child td{border:none}.atbl tr:hover td{background:var(--bg2)}
+.ab{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;display:inline-block}
+.abg{background:var(--acc-bg);color:var(--acc2)}.aba{background:var(--amb-bg);color:var(--amb)}.abr{background:var(--red-bg);color:var(--red)}
+.afg{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.af{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}
+.af label{font-size:11px;font-weight:600;color:var(--ink2)}
+.af input,.af textarea,.af select{padding:9px 11px;border:1.5px solid var(--bdr);border-radius:8px;font-size:13px;font-family:var(--fb);outline:none;background:var(--bg);color:var(--ink);transition:border-color .2s;width:100%}
+.af input:focus,.af textarea:focus,.af select:focus{border-color:var(--acc)}
+.af textarea{min-height:80px;resize:vertical}
+.achart{background:var(--bg2);border-radius:var(--r);padding:16px;margin-bottom:18px}
+.acht{font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.abrs{display:flex;align-items:flex-end;gap:5px;height:68px}
+.abar{flex:1;border-radius:3px 3px 0 0;background:var(--acc);opacity:.5;transition:opacity .2s}
+.abar:hover{opacity:1}
+.ablbls{display:flex;gap:5px;margin-top:5px}.ablbl{flex:1;text-align:center;font-size:10px;color:var(--ink3)}
+.togrow{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--bdr)}
+.togrow:last-child{border:none}
+.togl{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}.togs{font-size:12px;color:var(--ink3)}
+.tog{width:38px;height:21px;background:var(--bg3);border-radius:99px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;border:none;outline:none}
+.tog.on{background:var(--acc)}.tog::after{content:'';position:absolute;top:2px;left:2px;width:17px;height:17px;background:#fff;border-radius:50%;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on::after{left:19px}
+.pagrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.pac{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:15px;transition:box-shadow .2s}
+.pac:hover{box-shadow:var(--sh)}.paic{font-size:26px;margin-bottom:7px}.panm{font-size:13px;font-weight:700;margin-bottom:2px}
+.papr{font-size:15px;font-family:var(--fh);font-weight:800;color:var(--acc2);margin-bottom:9px}.paact{display:flex;gap:6px}
+.anlnote{background:var(--blue-bg);border:1px solid rgba(37,99,235,.2);border-radius:11px;padding:14px;margin-bottom:18px;font-size:13px;color:var(--blue);line-height:1.65}
+.anlnote a{color:var(--blue);font-weight:600}
+.plsbl{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r2);padding:22px;text-align:center;min-height:160px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px}
+.plsbl p{font-size:13px;color:var(--ink3)}
+#toast{position:fixed;bottom:22px;right:22px;background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-size:13px;font-weight:600;z-index:99999;opacity:0;transition:opacity .3s,transform .3s;transform:translateY(8px);pointer-events:none;max-width:280px}
+#toast.show{opacity:1;transform:none}
+@media(max-width:1060px){.g3,.pgrid{grid-template-columns:repeat(2,1fr)}.ftg{grid-template-columns:1fr 1fr}.sgrid{grid-template-columns:repeat(2,1fr)}.prgrid{grid-template-columns:1fr;max-width:360px}.prcard.feat{transform:none}.bgrid{grid-template-columns:1fr}.ctgrid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.pagrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){section{padding:54px 5%}.g2{grid-template-columns:1fr}.hvis{display:none}.g3,.pgrid{grid-template-columns:1fr}.sgrid{grid-template-columns:1fr 1fr}.ftg{grid-template-columns:1fr;gap:26px}.nlinks,.nav-r{display:none}.nav-mob{display:flex}.nlform{flex-direction:column}.pmethods{grid-template-columns:1fr}.awrap{grid-template-columns:1fr}.aside{display:none}.afg{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.frow{grid-template-columns:1fr}.stcards{grid-template-columns:1fr 1fr}.pagrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<!-- MAINTENANCE -->
+<div id="maint-sc">
+  <div style="font-size:64px;margin-bottom:20px">🔧</div>
+  <h2 class="maint-h">We'll Be Right Back</h2>
+  <p class="maint-p">FocusFlow is undergoing scheduled maintenance. Back shortly.</p>
+  <input class="maint-inp" type="password" id="maint-pw" placeholder="Admin override password"/>
+  <button class="btn btn-acc" onclick="maintOv()">Access Admin</button>
+</div>
+<!-- LOGIN -->
+<div id="login-sc">
+  <div class="lcrd">
+    <div class="llogo"><span style="width:8px;height:8px;background:var(--acc);border-radius:50%;display:inline-block"></span>FocusFlow Admin</div>
+    <div class="lsub">Sign in to manage your site</div>
+    <div class="lerr" id="lerr">Incorrect password. Please try again.</div>
+    <div class="af"><label>Password</label><input type="password" id="lpw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="btn btn-dark btn-lg" style="width:100%;justify-content:center;border-radius:10px;margin-top:4px" onclick="doLogin()">Sign In →</button>
+    <p style="text-align:center;margin-top:12px;font-size:12px;color:var(--ink3)">Default password: <strong>focusflow2025</strong><br>Change it in Admin → Settings</p>
+    <button onclick="ce('login-sc').classList.remove('open')" style="display:block;margin:12px auto 0;background:none;border:none;font-size:13px;color:var(--ink3);cursor:pointer;font-family:var(--fb)">← Back to site</button>
+  </div>
+</div>
+<!-- PAY MODAL -->
+<div class="mover" id="pay-modal">
+  <div class="modal">
+    <button class="mclose" onclick="ce('pay-modal').classList.remove('open')">×</button>
+    <div class="chip chip-a" style="margin-bottom:10px">💳 Purchase</div>
+    <h3 id="pm-title">Get Product</h3>
+    <p class="msub" id="pm-sub">Choose your payment method, send the exact amount, then submit your transaction reference. Admin verifies within 1–4 hours and emails your download link.</p>
+    <div class="pmethods">
+      <div class="pmethod" onclick="selPay('zaad',this)"><div class="pmico">📱</div><div class="pmnm">Zaad</div><div class="pmsub">Telesom</div></div>
+      <div class="pmethod" onclick="selPay('evc',this)"><div class="pmico">💚</div><div class="pmnm">EVC Plus</div><div class="pmsub">Hormuud/Somtel</div></div>
+      <div class="pmethod" onclick="selPay('bank',this)"><div class="pmico">🏦</div><div class="pmnm">Bank Transfer</div><div class="pmsub">Wire/SWIFT</div></div>
+      <div class="pmethod" onclick="selPay('paypal',this)"><div class="pmico">🅿️</div><div class="pmnm">PayPal</div><div class="pmsub">International</div></div>
+    </div>
+    <div class="pinst" id="pinst">
+      <div class="pintitle" id="pintitle">Payment Details</div>
+      <div class="pinnum" id="pinnum">—</div>
+      <div class="pinnote" id="pinnote">Send the exact amount shown, then copy your transaction reference.</div>
+    </div>
+    <div id="pform-wrap">
+      <div class="ff"><label>Full Name *</label><input type="text" id="pf-name" placeholder="Your full name"/></div>
+      <div class="ff"><label>Email Address *</label><input type="email" id="pf-email" placeholder="your@email.com"/></div>
+      <div class="ff"><label>Transaction Reference *</label><input type="text" id="pf-ref" placeholder="e.g. TXN-2026-XXXX"/></div>
+      <div class="ff"><label>Notes (optional)</label><textarea id="pf-notes" placeholder="Any additional info..."></textarea></div>
+      <button class="btn btn-acc btn-lg" style="width:100%;justify-content:center;border-radius:10px" onclick="submitPay()">Submit Payment Reference →</button>
+    </div>
+    <div class="psuccess" id="psuccess">
+      <div style="font-size:46px;margin-bottom:10px">✅</div>
+      <h4 style="font-size:18px;margin-bottom:8px;font-family:var(--fh)">Reference Received!</h4>
+      <p style="font-size:13px;color:var(--ink3)">We'll verify your payment within 1–4 hours and send your download link by email. Check zamanhargeysa@gmail.com if you have questions.</p>
+    </div>
+  </div>
+</div>
+<!-- ADMIN PANEL -->
+<div id="adm-ov">
+  <div class="awrap">
+    <aside class="aside">
+      <div class="aside-hdr">
+        <div class="alogo"><span style="width:7px;height:7px;background:var(--acc);border-radius:50%"></span>Focus<span>Flow</span></div>
+        <div class="asub">Admin Dashboard</div>
+      </div>
+      <ul class="anav">
+        <li><a class="act" onclick="sp('overview',this)"><span class="nico">📊</span>Overview</a></li>
+        <li><a onclick="sp('analytics',this)"><span class="nico">📈</span>Analytics</a></li>
+        <li><a onclick="sp('payments',this)"><span class="nico">💳</span>Payments</a></li>
+        <li><a onclick="sp('products',this)"><span class="nico">📦</span>Products</a></li>
+        <li><a onclick="sp('homepage',this)"><span class="nico">🏠</span>Homepage</a></li>
+        <li><a onclick="sp('testimonials',this)"><span class="nico">💬</span>Testimonials</a></li>
+        <li><a onclick="sp('pricing',this)"><span class="nico">🏷️</span>Pricing</a></li>
+        <li><a onclick="sp('faq',this)"><span class="nico">❓</span>FAQ</a></li>
+        <li><a onclick="sp('newsletter',this)"><span class="nico">📧</span>Newsletter</a></li>
+        <li><a onclick="sp('seo',this)"><span class="nico">🔍</span>SEO</a></li>
+        <li><a onclick="sp('settings',this)"><span class="nico">⚙️</span>Settings</a></li>
+      </ul>
+      <div class="aside-bot">
+        <button onclick="closeAdmin()" style="display:flex;align-items:center;gap:7px;background:none;border:none;color:rgba(255,255,255,.35);cursor:pointer;font-size:13px;font-family:var(--fb);padding:0;width:100%;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.35)'">← Exit to Website</button>
+      </div>
+    </aside>
+    <main class="amain">
+      <div class="ahdr"><h1 id="aptitle">Overview</h1><div style="display:flex;gap:8px"><button class="btn btn-ghost btn-sm" onclick="closeAdmin()">View Site</button></div></div>
+      <!-- OVERVIEW -->
+      <div class="apanel act" id="ap-overview">
+        <div class="kpis">
+          <div class="kpi"><div class="kpil">Total Visitors</div><div class="kpiv" id="k-vis">—</div><div class="kpis2">self-tracked sessions</div></div>
+          <div class="kpi"><div class="kpil">Pending Payments</div><div class="kpiv" id="k-pend">—</div><div class="kpis2" id="k-pend-s">awaiting review</div></div>
+          <div class="kpi"><div class="kpil">Approved Orders</div><div class="kpiv" id="k-ord">—</div><div class="kpis2">total approved</div></div>
+          <div class="kpi"><div class="kpil">Tracker Users</div><div class="kpiv" id="k-trk">—</div><div class="kpis2">free habit tracker</div></div>
+        </div>
+        <div class="achart"><div class="acht">Page Loads — Last 7 Days</div><div class="abrs" id="ov-chart"></div><div class="ablbls" id="ov-lbls"></div></div>
+        <div class="asect"><div class="asect-hdr"><h3>Recent Payment Submissions</h3><button class="btn btn-ghost btn-sm" onclick="sp('payments',null)">View All</button></div>
+        <table class="atbl"><thead><tr><th>Name</th><th>Product</th><th>Method</th><th>Reference</th><th>Status</th><th>Actions</th></tr></thead><tbody id="ov-pays"></tbody></table></div>
+      </div>
+      <!-- ANALYTICS -->
+      <div class="apanel" id="ap-analytics">
+        <div class="anlnote"><strong>📊 Real Analytics Setup</strong><br>Sign up free at <a href="https://plausible.io" target="_blank">plausible.io</a>, add your domain, paste the script tag in SEO → Analytics Script. Data below is self-tracked session counts from localStorage.</div>
+        <div class="kpis">
+          <div class="kpi"><div class="kpil">Today</div><div class="kpiv" id="an-td">—</div><div class="kpis2">sessions</div></div>
+          <div class="kpi"><div class="kpil">This Week</div><div class="kpiv" id="an-wk">—</div><div class="kpis2">sessions</div></div>
+          <div class="kpi"><div class="kpil">This Month</div><div class="kpiv" id="an-mo">—</div><div class="kpis2">sessions</div></div>
+          <div class="kpi"><div class="kpil">All Time</div><div class="kpiv" id="an-all">—</div><div class="kpis2">since setup</div></div>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>Conversion Funnel</h3></div><table class="atbl"><thead><tr><th>Step</th><th>Count</th><th>Rate</th></tr></thead><tbody id="an-funnel"></tbody></table></div>
+        <div class="plsbl"><div style="font-size:30px">📊</div><p><strong>Embed your Plausible or Google Analytics dashboard here</strong></p><p style="margin-top:3px">After connecting your domain, paste the iframe embed code here</p><a href="https://plausible.io" target="_blank" class="btn btn-dark btn-sm" style="margin-top:10px">Set up Plausible Free →</a></div>
+      </div>
+      <!-- PAYMENTS -->
+      <div class="apanel" id="ap-payments">
+        <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+          <div class="kpi"><div class="kpil">Pending</div><div class="kpiv" id="pay-pend">—</div></div>
+          <div class="kpi"><div class="kpil">Approved</div><div class="kpiv" id="pay-appr">—</div></div>
+          <div class="kpi"><div class="kpil">Rejected</div><div class="kpiv" id="pay-rej">—</div></div>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>All Payment Submissions</h3></div>
+          <div id="no-pays" style="text-align:center;padding:24px;color:var(--ink3);font-size:13px;display:none">No submissions yet. Customer payment references appear here when submitted.</div>
+          <table class="atbl"><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Product</th><th>Method</th><th>Reference</th><th>Status</th><th>Actions</th></tr></thead><tbody id="all-pays"></tbody></table>
+        </div>
+      </div>
+      <!-- PRODUCTS -->
+      <div class="apanel" id="ap-products">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><p style="color:var(--ink3);font-size:13px">Changes update the site immediately. Prices: $1–$20.</p><button class="btn btn-acc btn-sm" onclick="addProd()">+ Add Product</button></div>
+        <div class="pagrid" id="pa-grid"></div>
+        <div class="asect" id="prod-form" style="display:none">
+          <div class="asect-hdr"><h3 id="pf-title">Edit Product</h3></div>
+          <div class="afg"><div class="af"><label>Product Name</label><input type="text" id="pf-nm"/></div><div class="af"><label>Price ($1–$20)</label><input type="number" id="pf-pr" min="1" max="20"/></div></div>
+          <div class="afg"><div class="af"><label>Old Price (strikethrough)</label><input type="number" id="pf-op"/></div><div class="af"><label>Category</label><select id="pf-cat"><option>Tracker</option><option>Planner</option><option>Bundle</option><option>System</option></select></div></div>
+          <div class="af"><label>Description</label><textarea id="pf-desc"></textarea></div>
+          <div class="afg"><div class="af"><label>Emoji Icon</label><input type="text" id="pf-ico" maxlength="4"/></div><div class="af"><label>Card BG Color</label><input type="text" id="pf-bg" placeholder="#F0EDE6"/></div></div>
+          <div class="af"><label>Features (one per line)</label><textarea id="pf-feats" style="min-height:90px"></textarea></div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px">
+            <label style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;cursor:pointer"><input type="checkbox" id="pf-feat"/> Featured</label>
+            <label style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;cursor:pointer"><input type="checkbox" id="pf-best"/> Best Seller</label>
+            <label style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;cursor:pointer"><input type="checkbox" id="pf-val"/> Best Value</label>
+            <label style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;cursor:pointer"><input type="checkbox" id="pf-free"/> Free Product</label>
+          </div>
+          <div style="display:flex;gap:9px"><button class="btn btn-acc btn-sm" onclick="saveProd()">Save Product</button><button class="btn btn-outline btn-sm" onclick="ce('prod-form').style.display='none'">Cancel</button></div>
+        </div>
+      </div>
+      <!-- HOMEPAGE -->
+      <div class="apanel" id="ap-homepage">
+        <div class="asect"><div class="asect-hdr"><h3>Announcement Bar</h3></div>
+          <div class="af"><label>Text</label><input type="text" id="hp-ann" value="New: FocusFlow Complete System launched — Save 47% today"/></div>
+          <div class="afg"><div class="af"><label>Link Text</label><input type="text" id="hp-al" value="See the bundle →"/></div><div class="af"><label>Link URL</label><input type="text" id="hp-ah" value="#bundle"/></div></div>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>Hero Section</h3></div>
+          <div class="af"><label>Main Headline</label><input type="text" id="hp-h1" value="Build Better Habits."/></div>
+          <div class="af"><label>Italic Accent Line</label><input type="text" id="hp-h1i" value="Accomplish More."/></div>
+          <div class="af"><label>Subheadline Paragraph</label><textarea id="hp-sub">A complete productivity system designed to help you stay consistent, organize your life, and achieve your biggest goals.</textarea></div>
+          <div class="afg"><div class="af"><label>Primary CTA Button</label><input type="text" id="hp-c1" value="Start Free Today →"/></div><div class="af"><label>Secondary CTA Button</label><input type="text" id="hp-c2" value="See Products"/></div></div>
+        </div>
+        <button class="btn btn-acc btn-sm" onclick="saveHP()">Save & Publish Changes</button>
+      </div>
+      <!-- TESTIMONIALS -->
+      <div class="apanel" id="ap-testimonials">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><p style="color:var(--ink3);font-size:13px">Manage customer reviews shown on the website.</p><button class="btn btn-acc btn-sm" onclick="addTesti()">+ Add Review</button></div>
+        <div class="asect"><table class="atbl"><thead><tr><th>Name</th><th>Role</th><th>Stars</th><th>Preview</th><th>Actions</th></tr></thead><tbody id="testi-body"></tbody></table></div>
+        <div class="asect" id="testi-form" style="display:none">
+          <div class="asect-hdr"><h3>Add / Edit Review</h3></div>
+          <div class="afg"><div class="af"><label>Customer Name</label><input type="text" id="tf-nm"/></div><div class="af"><label>Job Title</label><input type="text" id="tf-role"/></div></div>
+          <div class="afg"><div class="af"><label>Rating (1–5)</label><input type="number" id="tf-rat" min="1" max="5" value="5"/></div><div class="af"><label>Avatar Color</label><input type="color" id="tf-col" value="#3d7a4a"/></div></div>
+          <div class="af"><label>Review Text</label><textarea id="tf-txt"></textarea></div>
+          <div style="display:flex;gap:9px"><button class="btn btn-acc btn-sm" onclick="saveTesti()">Save Review</button><button class="btn btn-outline btn-sm" onclick="ce('testi-form').style.display='none'">Cancel</button></div>
+        </div>
+      </div>
+      <!-- PRICING -->
+      <div class="apanel" id="ap-pricing">
+        <div style="background:var(--amb-bg);border-radius:9px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--amb)"><strong>Price Range:</strong> Minimum $1 — Maximum $20 per plan.</div>
+        <div class="asect"><div class="asect-hdr"><h3>Starter Plan</h3></div><div class="afg"><div class="af"><label>Plan Name</label><input type="text" id="pr1n" value="Essential"/></div><div class="af"><label>Price ($)</label><input type="number" id="pr1p" min="1" max="20" value="5"/></div></div><div class="af"><label>Features (one per line)</label><textarea id="pr1f">Habit Tracker&#10;Task Tracker&#10;Basic Dashboard&#10;Mobile &amp; desktop</textarea></div></div>
+        <div class="asect"><div class="asect-hdr"><h3>Pro Plan</h3></div><div class="afg"><div class="af"><label>Plan Name</label><input type="text" id="pr2n" value="Complete"/></div><div class="af"><label>Price ($)</label><input type="number" id="pr2p" min="1" max="20" value="12"/></div></div><div class="af"><label>Features (one per line)</label><textarea id="pr2f">Everything in Starter&#10;Goal Planner&#10;Weekly Planner&#10;Progress Analytics&#10;Priority support</textarea></div></div>
+        <div class="asect"><div class="asect-hdr"><h3>Ultimate Plan</h3></div><div class="afg"><div class="af"><label>Plan Name</label><input type="text" id="pr3n" value="All-In"/></div><div class="af"><label>Price ($)</label><input type="number" id="pr3p" min="1" max="20" value="20"/></div></div><div class="af"><label>Features (one per line)</label><textarea id="pr3f">Everything in Pro&#10;Personal Growth System&#10;All future products&#10;Lifetime updates&#10;VIP support</textarea></div></div>
+        <button class="btn btn-acc btn-sm" onclick="savePricing()">Save Pricing</button>
+      </div>
+      <!-- FAQ -->
+      <div class="apanel" id="ap-faq">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><p style="color:var(--ink3);font-size:13px">Add, edit, or remove FAQ items.</p><button class="btn btn-acc btn-sm" onclick="addFaqI()">+ Add Question</button></div>
+        <div id="faq-adm"></div>
+      </div>
+      <!-- NEWSLETTER -->
+      <div class="apanel" id="ap-newsletter">
+        <div class="kpis" style="grid-template-columns:repeat(3,1fr)"><div class="kpi"><div class="kpil">Subscribers</div><div class="kpiv" id="nl-cnt">—</div></div><div class="kpi"><div class="kpil">This Month</div><div class="kpiv" id="nl-mo">—</div></div><div class="kpi"><div class="kpil">Provider</div><div class="kpiv" style="font-size:16px">Formspree</div></div></div>
+        <div class="anlnote">Use <a href="https://formspree.io" target="_blank">Formspree.io</a> for real email delivery — create a free form, copy the ID, and paste it in SEO → Form ID field. Subscribers below are stored locally in the browser.</div>
+        <div class="asect"><div class="asect-hdr"><h3>Subscribers</h3><button class="btn btn-ghost btn-sm" onclick="exportSubs()">Export CSV</button></div>
+          <div id="no-subs" style="text-align:center;padding:22px;color:var(--ink3);font-size:13px;display:none">No subscribers yet.</div>
+          <table class="atbl"><thead><tr><th>Email</th><th>Date</th><th>Source</th></tr></thead><tbody id="subs-body"></tbody></table>
+        </div>
+      </div>
+      <!-- SEO -->
+      <div class="apanel" id="ap-seo">
+        <div class="asect"><div class="asect-hdr"><h3>SEO Settings</h3></div>
+          <div class="af"><label>Page Title</label><input type="text" id="seo-t" value="FocusFlow — Build Better Habits. Accomplish More."/></div>
+          <div class="af"><label>Meta Description</label><textarea id="seo-d">Free habit tracker + premium productivity templates. $1–$20. No subscription.</textarea></div>
+          <div class="af"><label>Keywords (comma separated)</label><input type="text" id="seo-k" value="habit tracker, productivity templates, task manager, goal planner"/></div>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>Integrations</h3></div>
+          <div class="af"><label>Analytics Script Tag (Plausible / Google Analytics)</label><textarea id="seo-anl" style="font-family:monospace;font-size:12px;min-height:80px" placeholder='Paste your script tag here e.g.: &lt;script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"&gt;&lt;/script&gt;'></textarea></div>
+          <div class="af"><label>Formspree Form ID (for contact form — get free at formspree.io)</label><input type="text" id="seo-fsp" placeholder="e.g. xyzabcde — replaces YOUR_FORM_ID"/></div>
+          <button class="btn btn-acc btn-sm" onclick="saveSEO()">Save Settings</button>
+        </div>
+      </div>
+      <!-- SETTINGS -->
+      <div class="apanel" id="ap-settings">
+        <div class="asect"><div class="asect-hdr"><h3>Site Controls</h3></div>
+          <div class="togrow"><div class="toginf"><div class="togl">Maintenance Mode</div><div class="togs">Show maintenance page to all visitors. Access admin via override password.</div></div><button class="tog" id="tog-maint" onclick="togSet('maintenance')"></button></div>
+          <div class="togrow"><div class="toginf"><div class="togl">Dark Mode (Site Default)</div><div class="togs">Enable dark theme for all visitors.</div></div><button class="tog" id="tog-dark" onclick="togSet('darkmode')"></button></div>
+          <div class="togrow"><div class="toginf"><div class="togl">Announcement Bar</div><div class="togs">Show/hide the top announcement banner.</div></div><button class="tog on" id="tog-ann" onclick="togSet('annbar')"></button></div>
+          <div class="togrow"><div class="toginf"><div class="togl">Free Tracker Visible</div><div class="togs">Allow public access to the free habit tracker section.</div></div><button class="tog on" id="tog-trk" onclick="togSet('tracker')"></button></div>
+          <div class="togrow"><div class="toginf"><div class="togl">Accept Payments</div><div class="togs">Allow customers to submit payment references. Disable to pause purchases.</div></div><button class="tog on" id="tog-pays" onclick="togSet('payments')"></button></div>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>Admin Password</h3></div>
+          <div class="af"><label>Current Password</label><input type="password" id="pw-cur" placeholder="Current password"/></div>
+          <div class="afg"><div class="af"><label>New Password (min 8 chars)</label><input type="password" id="pw-new" placeholder="New password"/></div><div class="af"><label>Confirm New Password</label><input type="password" id="pw-con" placeholder="Confirm"/></div></div>
+          <div class="af"><label>Maintenance Override Password</label><input type="password" id="pw-mo" placeholder="Override password"/></div>
+          <button class="btn btn-dark btn-sm" onclick="chgPw()">Update Passwords</button>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>Payment Account Numbers</h3></div>
+          <div class="afg"><div class="af"><label>Zaad Number</label><input type="text" id="pa-zaad" placeholder="+252 63 XXXXXXX"/></div><div class="af"><label>EVC Plus Number</label><input type="text" id="pa-evc" placeholder="+252 61 XXXXXXX"/></div></div>
+          <div class="afg"><div class="af"><label>Bank Details</label><input type="text" id="pa-bank" placeholder="Account number / IBAN"/></div><div class="af"><label>PayPal Email</label><input type="text" id="pa-pp" placeholder="payments@domain.com"/></div></div>
+          <button class="btn btn-acc btn-sm" onclick="savePayAcc()">Save Payment Accounts</button>
+        </div>
+        <div class="asect"><div class="asect-hdr"><h3>Danger Zone</h3></div>
+          <button class="btn btn-red btn-sm" onclick="if(confirm('Reset ALL site data to defaults? This cannot be undone.'))resetAll()">Reset All Data to Defaults</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════ PUBLIC SITE ═══════ -->
+<div id="ann-bar">
+  <span id="ann-txt">✦ New: FocusFlow Complete System launched — Save 47% today</span>
+  <a href="#bundle" id="ann-lnk">See the bundle →</a>
+  <button class="ann-x" onclick="ce('ann-bar').style.display='none'" aria-label="Close announcement">×</button>
+</div>
+<nav id="nav">
+  <a href="#" class="logo" aria-label="FocusFlow home"><span class="logo-dot"></span>FocusFlow</a>
+  <ul class="nlinks">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#tracker">Free Tracker<span class="free-badge">FREE</span></a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="btn btn-ghost btn-sm" onclick="toggleDark()" title="Toggle dark mode">☾</button>
+    <button class="btn btn-ghost btn-sm" onclick="openLogin()">Admin</button>
+    <a href="#tracker" class="btn btn-acc btn-sm">Start Free →</a>
+  </div>
+  <button class="nav-mob" onclick="toggleMob()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div id="mob-menu">
+  <ul>
+    <li><a href="#products" onclick="closeMob()">Products</a></li>
+    <li><a href="#tracker" onclick="closeMob()">Free Tracker</a></li>
+    <li><a href="#features" onclick="closeMob()">Features</a></li>
+    <li><a href="#pricing" onclick="closeMob()">Pricing</a></li>
+    <li><a href="#contact" onclick="closeMob()">Contact</a></li>
+    <li><a href="#faq" onclick="closeMob()">FAQ</a></li>
+  </ul>
+  <div class="mob-btns">
+    <button class="btn btn-outline btn-sm" onclick="openLogin();closeMob()">Admin</button>
+    <a href="#tracker" class="btn btn-acc btn-sm" onclick="closeMob()">Start Free →</a>
+  </div>
+</div>
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="g2">
+      <div>
+        <div class="hpill rv"><span class="hpdot"></span>Free habit tracker — no account needed</div>
+        <h1 class="hero-h1 rv d1" id="hero-h1">Build Better Habits.<br><em id="hero-h1i">Accomplish More.</em></h1>
+        <p class="hsub rv d2" id="hero-sub">A complete productivity system designed to help you stay consistent, organize your life, and achieve your biggest goals.</p>
+        <div class="hbtns rv d3">
+          <a href="#tracker" class="btn btn-acc btn-lg" id="hcta1">Start Free Today →</a>
+          <a href="#products" class="btn btn-outline btn-lg" id="hcta2">See Products</a>
+        </div>
+        <div class="trust rv d4">
+          <div class="tri"><span style="color:#F59E0B">★★★★★</span>&nbsp;5.0 Rating</div>
+          <span class="tsep"></span><div class="tri" id="tr1">10,000+ Users</div>
+          <span class="tsep"></span><div class="tri" id="tr2">Lifetime Access</div>
+          <span class="tsep"></span><div class="tri" id="tr3">Free Tracker Included</div>
+        </div>
+      </div>
+      <div class="hvis rv d2">
+        <div style="position:relative">
+          <div class="fw fw1"><div class="fwi" style="background:#E8F4E8">🎯</div><div><div class="fwtx">Goal Achieved!</div><div class="fwsb">Morning routine · 21 days</div></div></div>
+          <div class="dash">
+            <div class="dbar"><div class="ddots"><span class="ddot" style="background:#FF5F57"></span><span class="ddot" style="background:#FEBC2E"></span><span class="ddot" style="background:#28C840"></span></div><span class="dlbl">FocusFlow Dashboard</span><span class="dlbl">Jun 2026</span></div>
+            <div class="dsts"><div class="dst"><div class="dstl">Streak</div><div class="dstv">24</div></div><div class="dst"><div class="dstl">Today</div><div class="dstv">6/7</div></div><div class="dst"><div class="dstl">Score</div><div class="dstv">94%</div></div></div>
+            <div class="dhabs">
+              <div class="dhr"><span class="dhdot" style="background:#7BBE6A"></span><span class="dhn">Morning workout</span><div class="dhbar"><div class="dhf" style="width:88%;background:#7BBE6A"></div></div><span class="dhp">88%</span></div>
+              <div class="dhr"><span class="dhdot" style="background:#C8861A"></span><span class="dhn">Deep work 2hrs</span><div class="dhbar"><div class="dhf" style="width:95%;background:#C8861A"></div></div><span class="dhp">95%</span></div>
+              <div class="dhr"><span class="dhdot" style="background:#7A5AB8"></span><span class="dhn">Read 30 mins</span><div class="dhbar"><div class="dhf" style="width:72%;background:#7A5AB8"></div></div><span class="dhp">72%</span></div>
+              <div class="dhr"><span class="dhdot" style="background:#C86A4A"></span><span class="dhn">Cold shower</span><div class="dhbar"><div class="dhf" style="width:60%;background:#C86A4A"></div></div><span class="dhp">60%</span></div>
+            </div>
+            <div class="dch"><div class="dcl">Weekly Activity</div><div class="dcbs"><div class="dcb" style="height:55%;background:rgba(123,190,106,.5)"></div><div class="dcb" style="height:75%;background:rgba(123,190,106,.6)"></div><div class="dcb" style="height:48%;background:rgba(123,190,106,.5)"></div><div class="dcb" style="height:90%;background:rgba(123,190,106,.75)"></div><div class="dcb" style="height:70%;background:rgba(123,190,106,.6)"></div><div class="dcb" style="height:100%;background:#7BBE6A"></div><div class="dcb" style="height:80%;background:rgba(123,190,106,.7)"></div></div></div>
+          </div>
+          <div class="fw fw2"><div class="fwi" style="background:#FDE8E0">⚡</div><div><div class="fwtx">3 tasks due</div><div class="fwsb">Today's focus list</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FREE TRACKER -->
+<section id="tracker" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="rv" style="max-width:640px;margin-bottom:36px">
+      <div class="chip chip-g">✦ 100% Free — No Account Needed</div>
+      <h2 style="margin-bottom:10px">Your Free Habit Tracker</h2>
+      <p style="font-size:17px">Start building better habits right now. Your data saves in your browser automatically — no signup required.</p>
+    </div>
+    <div class="trk-app rv d1">
+      <div class="trk-hdr">
+        <div class="trk-logo">Focus<span>Flow</span> <span style="font-size:10px;background:rgba(123,190,106,.2);color:var(--acc);padding:2px 8px;border-radius:99px;font-family:var(--fb);font-weight:700;margin-left:4px">FREE</span></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);font-family:var(--fb)" id="trk-date"></div>
+      </div>
+      <div class="trk-body">
+        <div class="tabs">
+          <button class="tab act" onclick="switchTab('habits',this)">📋 Habits</button>
+          <button class="tab" onclick="switchTab('calendar',this)">📅 Calendar</button>
+          <button class="tab" onclick="switchTab('stats',this)">📊 Stats</button>
+        </div>
+        <div id="tab-habits">
+          <div id="hlist" class="hlist"></div>
+          <div class="add-form">
+            <input class="add-inp" type="text" id="nadd" placeholder="Add a habit (e.g. Morning workout)" maxlength="40" onkeydown="if(event.key==='Enter')addHabit()"/>
+            <button class="btn btn-acc btn-sm" onclick="addHabit()">+ Add</button>
+          </div>
+          <p style="margin-top:12px;font-size:12px;color:var(--ink3)">💡 Tap the checkbox to mark habits complete. Streaks update automatically.</p>
+        </div>
+        <div id="tab-calendar" style="display:none">
+          <div class="cal-hdr"><button class="cal-nav" onclick="calPrev()">‹</button><h4 id="cal-lbl" style="font-size:16px">June 2026</h4><button class="cal-nav" onclick="calNext()">›</button></div>
+          <div class="cg7" id="cal-day-lbls"></div>
+          <div class="cg7" id="cal-days"></div>
+          <p style="margin-top:10px;font-size:12px;color:var(--ink3)"><span style="width:5px;height:5px;background:var(--acc);border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle"></span>Days with completed habits</p>
+        </div>
+        <div id="tab-stats" style="display:none">
+          <div class="stcards">
+            <div class="stc"><div class="stcv" id="sc-tot">0</div><div class="stcl">Habits</div></div>
+            <div class="stc"><div class="stcv" id="sc-don">0</div><div class="stcl">Done Today</div></div>
+            <div class="stc"><div class="stcv" id="sc-str">0</div><div class="stcl">Best Streak</div></div>
+            <div class="stc"><div class="stcv" id="sc-rt">0%</div><div class="stcl">Completion</div></div>
+          </div>
+          <h4 style="font-size:14px;margin-bottom:12px;color:var(--ink)">Individual Progress</h4>
+          <div class="hbars" id="hbars"></div>
+          <div style="margin-top:18px;padding:14px;background:var(--bg2);border-radius:11px;border:1px solid var(--bdr)">
+            <p style="font-size:13px;color:var(--ink2);margin-bottom:9px">Want cloud sync, advanced analytics and goal planning?</p>
+            <button class="btn btn-acc btn-sm" onclick="openPayModal('Pro Plan','12')">Upgrade to Pro — $12 →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="wrap">
+    <div class="rv" style="max-width:560px;margin-bottom:44px">
+      <div class="chip chip-g">Products</div>
+      <h2 style="margin-bottom:10px">Premium Templates &amp; Systems</h2>
+      <p style="font-size:16px">Pay once, use forever. $1–$20 — world-class productivity tools at accessible prices.</p>
+    </div>
+    <div class="pgrid" id="pub-pgrid"></div>
+  </div>
+</section>
+<!-- FEATURES -->
+<section id="features" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="rv" style="max-width:560px;margin-bottom:44px"><div class="chip chip-g">Features</div><h2>Everything you need<br>to stay productive</h2></div>
+    <div class="g3">
+      <div class="fcard rv d1"><div class="fico" style="background:#EAF5E6">📈</div><h3>Habit Tracking</h3><p>Visual streaks and charts that make your consistency impossible to ignore.</p></div>
+      <div class="fcard rv d2"><div class="fico" style="background:#EAF5E6">✅</div><h3>Task Management</h3><p>Capture, prioritize, and execute. A frictionless system for productive days.</p></div>
+      <div class="fcard rv d3"><div class="fico" style="background:#EDE0FA">🎯</div><h3>Goal Setting</h3><p>Define what matters, break into milestones, track your path to success.</p></div>
+      <div class="fcard rv d1"><div class="fico" style="background:#E6EEF5">📊</div><h3>Progress Analytics</h3><p>Dashboards that reveal patterns and show exactly where you're winning.</p></div>
+      <div class="fcard rv d2"><div class="fico" style="background:#FDE8E0">⚡</div><h3>Focus Planning</h3><p>Time-block deep work, guard your energy, design days that matter.</p></div>
+      <div class="fcard rv d3"><div class="fico" style="background:#EAF5E6">🌿</div><h3>Life Organization</h3><p>From morning routines to annual goals — one integrated system.</p></div>
+    </div>
+  </div>
+</section>
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="rv" style="max-width:560px;margin-bottom:44px"><div class="chip chip-g">The Science</div><h2>Designed around real<br>human behaviour</h2></div>
+    <div class="g3">
+      <div class="wblk rv d1"><div class="wnum">01</div><h3>Build Consistency</h3><p>Habit stacking anchors new behaviours to existing ones. FocusFlow makes it visual, measurable, and satisfying — so doing the work becomes the reward.</p></div>
+      <div class="wblk rv d2"><div class="wnum">02</div><h3>Reduce Decision Fatigue</h3><p>Pre-built planning structures eliminate the daily "what should I do?" paralysis. When your system decides, your brain just executes.</p></div>
+      <div class="wblk rv d3"><div class="wnum">03</div><h3>Measure Progress</h3><p>Visual feedback loops create momentum. Seeing your streak grow rewires your identity — you become someone who does.</p></div>
+    </div>
+  </div>
+</section>
+<!-- BUNDLE -->
+<section id="bundle">
+  <div class="wrap">
+    <div class="rv" style="max-width:540px"><div class="chip">🎁 Complete System</div><h2 style="margin-bottom:12px">The FocusFlow<br>System Pack</h2><p>Habits + tasks + goals + planning + growth — everything in one seamless stack.</p></div>
+    <div class="bgrid">
+      <div class="rv">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+          <span class="chip chip-g" style="margin:0">Best Value</span>
+          <span class="chip chip-a" style="margin:0">Save $85</span>
+        </div>
+        <div class="bprw"><span class="bpv">$20</span><span class="bpo">$105</span></div>
+        <ul class="blist"><li>Habit Tracker Pro</li><li>Task Manager</li><li>Goal Planner</li><li>Weekly Planner</li><li>Personal Growth System</li><li>Lifetime access + future updates</li><li>Priority admin support</li></ul>
+        <button class="btn btn-acc btn-lg" onclick="openPayModal('FocusFlow Bundle','20')">Get the Complete Pack →</button>
+      </div>
+      <div class="bvis rv d2">
+        <div class="bitm"><div style="font-size:22px">📊</div><div class="bnm">Habit Tracker Pro</div></div>
+        <div class="bitm"><div style="font-size:22px">✅</div><div class="bnm">Task Manager</div></div>
+        <div class="bitm"><div style="font-size:22px">🎯</div><div class="bnm">Goal Planner</div></div>
+        <div class="bitm"><div style="font-size:22px">📅</div><div class="bnm">Weekly Planner</div></div>
+        <div class="bitm" style="grid-column:span 2"><div style="font-size:22px">🌱</div><div class="bnm">Personal Growth System</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="rv" style="max-width:560px;margin-bottom:44px"><div class="chip chip-g">Reviews</div><h2>Real people, real results</h2></div>
+    <div class="g3" id="pub-tgrid"></div>
+  </div>
+</section>
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="sgrid rv">
+      <div class="sitm"><div class="snum">10,000<em>+</em></div><div class="slbl">Happy Users</div></div>
+      <div class="sitm"><div class="snum">500K<em>+</em></div><div class="slbl">Habits Tracked</div></div>
+      <div class="sitm"><div class="snum">95<em>%</em></div><div class="slbl">Satisfaction Rate</div></div>
+      <div class="sitm"><div class="snum">$1<em>–$20</em></div><div class="slbl">Affordable Pricing</div></div>
+    </div>
+  </div>
+</section>
+<!-- PRICING -->
+<section id="pricing" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="rv" style="max-width:640px;margin-bottom:44px">
+      <div class="chip chip-g">Pricing</div>
+      <h2>One payment. Lifetime access.<br><em style="color:var(--acc)">$1 to $20.</em></h2>
+      <p style="margin-top:10px;font-size:16px">No subscriptions. No monthly fees. Pay via Zaad, EVC Plus, bank transfer, or PayPal.</p>
+    </div>
+    <div class="prgrid rv d1" id="pub-prgrid"></div>
+  </div>
+</section>
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="rv" style="max-width:560px;margin-bottom:40px"><div class="chip chip-g">FAQ</div><h2>Common questions</h2></div>
+    <div class="faqw rv d1" id="pub-faq"></div>
+  </div>
+</section>
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="ctgrid">
+      <div class="ctinfo rv">
+        <div class="chip chip-g">Contact Us</div>
+        <h2>Get in Touch</h2>
+        <p>Have a question about a product, need help with your purchase, or want to discuss a partnership? We respond within 24 hours.</p>
+        <div class="ctmeths">
+          <a href="mailto:zamanhargeysa@gmail.com" class="ctm"><div class="ctmico" style="background:#EAF5E6">📧</div><div><div class="ctml">Email Us</div><div class="ctmsub">zamanhargeysa@gmail.com</div></div></a>
+          <a href="https://wa.me/252XXXXXXXXX" target="_blank" rel="noopener" class="ctm"><div class="ctmico" style="background:#E8F4E8">💬</div><div><div class="ctml">WhatsApp</div><div class="ctmsub">Quick support &amp; queries</div></div></a>
+          <a href="#faq" class="ctm"><div class="ctmico" style="background:#FBF0DC">❓</div><div><div class="ctml">Browse FAQ</div><div class="ctmsub">Answers to common questions</div></div></a>
+        </div>
+      </div>
+      <div class="ctfw rv d2">
+        <div class="fsuc" id="ct-suc"><span>✅</span>&nbsp;Message sent! We'll reply within 24 hours.</div>
+        <h3 style="margin-bottom:16px;font-size:18px;font-family:var(--fh)">Send a Message</h3>
+        <form id="ct-form" onsubmit="handleCt(event)">
+          <div class="frow">
+            <div class="ff"><label>Your Name *</label><input type="text" name="name" placeholder="Full name" required/></div>
+            <div class="ff"><label>Email *</label><input type="email" name="email" placeholder="your@email.com" required/></div>
+          </div>
+          <div class="ff"><label>Subject *</label>
+            <select name="subject" required style="padding:10px 12px;border:1.5px solid var(--bdr);border-radius:9px;font-size:14px;font-family:var(--fb);background:var(--bg);color:var(--ink);width:100%;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--acc)'" onblur="this.style.borderColor='var(--bdr)'">
+              <option value="">Select topic...</option>
+              <option>Product Question</option><option>Payment / Purchase Help</option>
+              <option>Download Issue</option><option>Feature Request</option>
+              <option>Partnership</option><option>Other</option>
+            </select>
+          </div>
+          <div class="ff"><label>Message *</label><textarea name="message" placeholder="How can we help?" style="min-height:100px" required></textarea></div>
+          <button type="submit" class="btn btn-dark btn-lg" style="width:100%;justify-content:center;border-radius:10px">Send Message →</button>
+          <p style="font-size:12px;color:var(--ink3);text-align:center;margin-top:9px">We respond within 24 hours. No spam.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="wrap">
+    <div class="nlbox rv">
+      <div class="chip chip-g" style="display:table;margin:0 auto 14px">Newsletter</div>
+      <h2>Join Thousands Improving<br>Their Productivity</h2>
+      <p style="margin-top:9px">Weekly tips on habits, focus, and systems that stick. No spam, ever.</p>
+      <div class="nlform">
+        <input type="email" id="nl-em" placeholder="Your email address" aria-label="Email address"/>
+        <button class="btn btn-dark" onclick="nlSub()">Subscribe →</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FINAL CTA -->
+<section id="fcta">
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="rv">
+      <div class="chip chip-g" style="display:table;margin:0 auto 14px">Get Started</div>
+      <h2>Start Building Better<br>Habits <em style="color:var(--acc)">Today</em></h2>
+      <p style="max-width:440px;margin:0 auto 26px">Try the free tracker now. Upgrade when ready. No risk, no commitment.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a href="#tracker" class="btn btn-acc btn-lg">Try Free Tracker →</a>
+        <a href="#pricing" class="btn btn-outline btn-lg">See Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ftg">
+      <div class="ftbrand"><div class="ftbl"><span class="ftbldot"></span>FocusFlow</div><p>Productivity systems to build discipline, track habits, and stay consistent. Affordable tools, real results.</p></div>
+      <div class="ftcol"><h4>Products</h4><ul><li><a href="#tracker">Free Habit Tracker</a></li><li><a href="#products">Habit Tracker Pro</a></li><li><a href="#products">Task Manager</a></li><li><a href="#products">Goal Planner</a></li><li><a href="#bundle">Complete Bundle</a></li></ul></div>
+      <div class="ftcol"><h4>Support</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact Us</a></li><li><a href="mailto:zamanhargeysa@gmail.com">Email Support</a></li><li><a href="#" onclick="openLogin();return false">Admin Login</a></li></ul></div>
+      <div class="ftcol"><h4>Legal</h4><ul><li><a href="#" onclick="toast('Privacy Policy — coming soon');return false">Privacy Policy</a></li><li><a href="#" onclick="toast('Terms of Service — coming soon');return false">Terms of Service</a></li><li><a href="#" onclick="toast('30-day money-back guarantee');return false">Refund Policy</a></li></ul></div>
+    </div>
+    <div class="ftbot">
+      <p>© 2026 FocusFlow. All rights reserved. Made with ❤️ for productivity enthusiasts.</p>
+      <div class="ftsoc">
+        <a href="#" class="socb" aria-label="Twitter" onclick="return false">X</a>
+        <a href="#" class="socb" aria-label="Instagram" onclick="return false">IG</a>
+        <a href="https://wa.me/252XXXXXXXXX" class="socb" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+      </div>
+    </div>
+    <div id="maint-note"></div>
+  </div>
+</footer>
+<div id="toast"></div>
+<script>
+/* ═══════════════════════════════════════
+   FOCUSFLOW PHASE 1 — COMPLETE JS
+   All data persists via localStorage
+   ═══════════════════════════════════════ */
+function gs(k,d){try{var v=localStorage.getItem('ff_'+k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function ss(k,v){try{localStorage.setItem('ff_'+k,JSON.stringify(v));}catch(e){}}
+function ce(id){return document.getElementById(id);}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function si(id,h){var e=ce(id);if(e)e.innerHTML=h;}
+function st(id,t){var e=ce(id);if(e)e.textContent=t;}
+function toast(msg){var t=ce('toast');if(!t)return;t.textContent=msg;t.className='show';clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3000);}
+
+/* ── DEFAULT DATA ── */
+var DEFS={
+  products:[
+    {id:1,name:'Habit Tracker Pro',desc:'Advanced tracking with streaks, analytics, and export.',price:5,old:15,ico:'📊',bg:'#F0EDE6',cat:'Tracker',feat:false,best:true,val:false,free:false,feats:['31-day visual tracker','Streak & completion charts','Export to CSV','Priority support']},
+    {id:2,name:'Task Manager',desc:'Priority matrices, daily & weekly views, recurring tasks.',price:5,old:12,ico:'✅',bg:'#E6ECF0',cat:'Tracker',feat:false,best:false,val:false,free:false,feats:['Priority matrix','Daily & weekly views','Recurring tasks','Time estimates']},
+    {id:3,name:'Goal Planner',desc:'90-day milestones with weekly review cycles and vision board.',price:8,old:20,ico:'🎯',bg:'#EDE6F0',cat:'Planner',feat:false,best:false,val:false,free:false,feats:['90-day framework','Milestone tracking','Weekly reviews','Vision board']},
+    {id:4,name:'Weekly Planner',desc:'Time-block your perfect week and review every Friday.',price:5,old:12,ico:'📅',bg:'#E6ECF0',cat:'Planner',feat:false,best:false,val:false,free:false,feats:['Time-blocking layout','Weekly review','Energy zones','Habit integration']},
+    {id:5,name:'Growth System',desc:'Mindset, habits, goals, and journaling in one complete system.',price:12,old:30,ico:'🌱',bg:'#E6F0E8',cat:'System',feat:true,best:false,val:false,free:false,feats:['Morning & evening rituals','Journal prompts','Monthly reviews','Progress tracking']},
+    {id:6,name:'Complete Bundle',desc:'All 5 premium systems — the complete productivity stack.',price:20,old:105,ico:'⚡',bg:'#F5E8D0',cat:'Bundle',feat:false,best:false,val:true,free:false,feats:['All 5 products','Lifetime updates','Priority support','Future products']}
+  ],
+  testis:[
+    {name:'Amara Kone',role:'Entrepreneur, Lagos',rating:5,txt:'FocusFlow is the first productivity tool that actually changed my behaviour. The free tracker got me hooked.',color:'#c8861a'},
+    {name:'Jake Morrison',role:'Freelance Designer',rating:5,txt:'47-day streak and counting. Visual feedback is genuinely addictive. Bought the Pro bundle and never looked back.',color:'#3d7a4a'},
+    {name:'Priya Sharma',role:'Medical Student',rating:5,txt:'The task manager eliminated my Sunday anxiety spiral. At $5 it is the best money I have spent this year.',color:'#7a3bb8'},
+    {name:'Tom Reeves',role:'Remote Engineer',rating:5,txt:'Three months in, I have hit 4 of my 5 annual goals. The goal planner framework is seriously powerful.',color:'#c86a4a'},
+    {name:'Lea Beaumont',role:'Content Creator',rating:5,txt:'Simple, clean, and affordable. At $20 for everything I expected basic templates — got a complete system.',color:'#1a6a8c'},
+    {name:'David Nkosi',role:'Startup Founder',rating:5,txt:'Used the free tracker for a week before upgrading. The transition from free to paid felt completely natural.',color:'#5a6a1a'}
+  ],
+  pric:[
+    {tier:'Starter',name:'Essential',price:5,feats:['Habit Tracker','Task Tracker','Basic Dashboard','Mobile & desktop'],feat:false},
+    {tier:'Pro',name:'Complete',price:12,feats:['Everything in Starter','Goal Planner','Weekly Planner','Progress Analytics','Priority support'],feat:true},
+    {tier:'Ultimate',name:'All-In',price:20,feats:['Everything in Pro','Personal Growth System','All future products','Lifetime updates','VIP support'],feat:false}
+  ],
+  faqs:[
+    {q:'How do I receive my templates after payment?',a:'After you submit your transaction reference, we verify it within 1–4 hours and email your download link. Contact zamanhargeysa@gmail.com with any questions.'},
+    {q:'What payment methods do you accept?',a:'We accept Zaad Money (Telesom), EVC Plus (Hormuud/Somtel), bank transfer, and PayPal. Submit your transaction reference and we verify manually.'},
+    {q:'Is the habit tracker really free?',a:'Yes, 100% free. No account, no payment, no expiry. It runs in your browser and saves locally on your device.'},
+    {q:'Can I use these on my phone?',a:'Yes. All FocusFlow products run on Google Sheets — free and perfect on any phone or tablet.'},
+    {q:'Do I get lifetime access?',a:'Yes. Pay once and own it forever. All updates to your purchased product are included at no extra cost.'},
+    {q:'Do you offer refunds?',a:'Yes, 30-day satisfaction guarantee. Contact zamanhargeysa@gmail.com for a full refund — no questions asked.'},
+    {q:'What is the price range?',a:'Products range from $1 to $20. The complete bundle is $20 for all 5 systems — the best value option.'}
+  ],
+  settings:{maintenance:false,darkmode:false,annbar:true,tracker:true,payments:true},
+  habits:[
+    {id:1,name:'Morning workout',created:Date.now(),comp:{}},
+    {id:2,name:'Read 30 minutes',created:Date.now(),comp:{}},
+    {id:3,name:'Drink 8 glasses water',created:Date.now(),comp:{}}
+  ]
+};
+
+/* ── STATE ── */
+var prods=gs('prods',DEFS.products);
+var testis=gs('testis',DEFS.testis);
+var pric=gs('pric',DEFS.pric);
+var faqs=gs('faqs',DEFS.faqs);
+var settings=gs('settings',DEFS.settings);
+var habits=gs('habits',DEFS.habits);
+var payments=gs('payments',[]);
+var subs=gs('subs',[]);
+var analytics=gs('analytics',{sessions:[],pv:{},conv:{opens:0,submits:0}});
+var editPid=null,editTid=null;
+var curProd='',curPrice='',selMethod='';
+var calY=new Date().getFullYear(),calM=new Date().getMonth();
+var TKEY=new Date().toISOString().split('T')[0];
+
+/* ── ANALYTICS ── */
+function trackSession(){
+  var sk='ff_s_'+TKEY;
+  if(!sessionStorage.getItem(sk)){
+    sessionStorage.setItem(sk,'1');
+    if(!analytics.sessions)analytics.sessions=[];
+    analytics.sessions.push(TKEY);
+    if(analytics.sessions.length>365)analytics.sessions=analytics.sessions.slice(-365);
+  }
+  if(!analytics.pv)analytics.pv={};
+  analytics.pv[TKEY]=(analytics.pv[TKEY]||0)+1;
+  ss('analytics',analytics);
+}
+function getVC(){
+  var s=analytics.sessions||[];
+  var now=new Date();
+  var wa=new Date(now-7*864e5),ma=new Date(now-30*864e5);
+  return{today:s.filter(function(d){return d===TKEY;}).length,week:s.filter(function(d){return new Date(d)>=wa;}).length,month:s.filter(function(d){return new Date(d)>=ma;}).length,total:s.length};
+}
+function get7(){
+  var r=[],l=[];
+  for(var i=6;i>=0;i--){
+    var d=new Date();d.setDate(d.getDate()-i);
+    var k=d.toISOString().split('T')[0];
+    r.push((analytics.pv||{})[k]||0);
+    l.push(['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]);
+  }
+  return{data:r,labels:l};
+}
+
+/* ── DARK MODE ── */
+function applyDark(on){document.body.classList.toggle('dark',on);}
+function toggleDark(){settings.darkmode=!settings.darkmode;ss('settings',settings);applyDark(settings.darkmode);}
+
+/* ── MAINTENANCE ── */
+function checkMaint(){if(settings.maintenance)ce('maint-sc').classList.add('show');}
+function maintOv(){
+  var pw=(ce('maint-pw').value||'').trim();
+  var stored=gs('maintPw',btoa('focusflowadmin'));
+  if(btoa(pw)===stored||pw===atob(stored)){ce('maint-sc').classList.remove('show');openLogin();}
+  else{var i=ce('maint-pw');if(i){i.style.borderColor='var(--red)';setTimeout(function(){i.style.borderColor='';},1500);}}
+}
+
+/* ── AUTH ── */
+function openLogin(){ce('login-sc').classList.add('open');}
+function doLogin(){
+  var pw=(ce('lpw').value||'').trim();
+  var stored=gs('adminPw',btoa('focusflow2025'));
+  if(btoa(pw)===stored||pw===atob(stored)){
+    ce('login-sc').classList.remove('open');
+    ce('adm-ov').classList.add('open');
+    document.body.style.overflow='hidden';
+    initAdm();
+  }else{
+    ce('lerr').style.display='block';
+    var inp=ce('lpw');if(inp){inp.style.borderColor='var(--red)';setTimeout(function(){inp.style.borderColor='';},1500);}
+  }
+}
+ce('lpw').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+function closeAdmin(){ce('adm-ov').classList.remove('open');document.body.style.overflow='';}
+function chgPw(){
+  var cur=(ce('pw-cur').value||'').trim();
+  var nw=(ce('pw-new').value||'').trim();
+  var con=(ce('pw-con').value||'').trim();
+  var stored=gs('adminPw',btoa('focusflow2025'));
+  if(btoa(cur)!==stored&&cur!==atob(stored)){toast('Current password incorrect');return;}
+  if(nw.length<8){toast('New password must be 8+ characters');return;}
+  if(nw!==con){toast('Passwords do not match');return;}
+  ss('adminPw',btoa(nw));
+  var mo=(ce('pw-mo').value||'').trim();
+  if(mo)ss('maintPw',btoa(mo));
+  toast('Passwords updated successfully!');
+  ['pw-cur','pw-new','pw-con','pw-mo'].forEach(function(id){var e=ce(id);if(e)e.value='';});
+}
+
+/* ── ADMIN PANEL NAV ── */
+var PTITLES={overview:'Overview',analytics:'Analytics',payments:'Payments',products:'Products',homepage:'Homepage',testimonials:'Testimonials',pricing:'Pricing',faq:'FAQ',newsletter:'Newsletter',seo:'SEO & Analytics',settings:'Settings'};
+function sp(name,el){
+  document.querySelectorAll('.apanel').forEach(function(p){p.classList.remove('act');});
+  var p=ce('ap-'+name);if(p)p.classList.add('act');
+  document.querySelectorAll('.anav a').forEach(function(a){a.classList.remove('act');});
+  if(el)el.classList.add('act');
+  st('aptitle',PTITLES[name]||name);
+  var fn={overview:refOv,analytics:refAn,payments:refPays,products:rAdmProds,testimonials:rAdmTestis,faq:rAdmFaqs,newsletter:refNL,settings:loadSettings};
+  if(fn[name])fn[name]();
+  return false;
+}
+function initAdm(){refOv();rAdmProds();rAdmTestis();rAdmFaqs();refPays();refAn();refNL();loadSettings();loadPayAcc();}
+
+/* ── OVERVIEW ── */
+function refOv(){
+  var vc=getVC();
+  var pend=payments.filter(function(p){return p.status==='pending';}).length;
+  var appr=payments.filter(function(p){return p.status==='approved';}).length;
+  st('k-vis',vc.total);st('k-pend',pend);st('k-pend-s',pend+' awaiting review');
+  st('k-ord',appr);st('k-trk',gs('trkUsers',0));
+  var d=get7();var mx=Math.max.apply(null,d.data)||1;
+  si('ov-chart',d.data.map(function(v){return '<div class="abar" style="height:'+Math.max(8,Math.round(v/mx*100))+'%"></div>';}).join(''));
+  si('ov-lbls',d.labels.map(function(l){return '<div class="ablbl">'+l+'</div>';}).join(''));
+  var recent=payments.slice().reverse().slice(0,6);
+  si('ov-pays',recent.length?recent.map(function(p){
+    return '<tr><td>'+esc(p.name)+'</td><td>'+esc(p.product)+'</td><td>'+esc(p.method)+'</td><td style="font-size:11px;font-family:monospace">'+esc(p.ref)+'</td><td><span class="ab '+(p.status==='approved'?'abg':p.status==='rejected'?'abr':'aba')+'">'+p.status+'</span></td><td><button class="btn btn-acc btn-sm" onclick="approvePay(\''+p.id+'\')" style="margin-right:4px">✓ Approve</button><button class="btn btn-red btn-sm" onclick="rejectPay(\''+p.id+'\')">✗ Reject</button></td></tr>';
+  }).join(''):'<tr><td colspan="6" style="text-align:center;color:var(--ink3);padding:14px">No payment submissions yet.</td></tr>');
+}
+
+/* ── ANALYTICS ── */
+function refAn(){
+  var vc=getVC();
+  st('an-td',vc.today);st('an-wk',vc.week);st('an-mo',vc.month);st('an-all',vc.total);
+  var c=analytics.conv||{opens:0,submits:0};
+  var appr=payments.filter(function(p){return p.status==='approved';}).length;
+  si('an-funnel',[
+    ['Site Visits',vc.total,'100%'],
+    ['Opened Payment Form',c.opens||0,vc.total?Math.round((c.opens||0)/Math.max(vc.total,1)*100)+'%':'0%'],
+    ['Submitted Payment',c.submits||0,vc.total?Math.round((c.submits||0)/Math.max(vc.total,1)*100)+'%':'0%'],
+    ['Approved Orders',appr,'—']
+  ].map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';}).join(''));
+}
+
+/* ── PAYMENTS ── */
+function refPays(){
+  var pend=payments.filter(function(p){return p.status==='pending';}).length;
+  var appr=payments.filter(function(p){return p.status==='approved';}).length;
+  var rej=payments.filter(function(p){return p.status==='rejected';}).length;
+  st('pay-pend',pend);st('pay-appr',appr);st('pay-rej',rej);
+  var np=ce('no-pays');
+  if(!payments.length){if(np)np.style.display='block';si('all-pays','');return;}
+  if(np)np.style.display='none';
+  si('all-pays',payments.slice().reverse().map(function(p){
+    return '<tr><td style="font-size:11px">'+esc(p.date)+'</td><td>'+esc(p.name)+'</td><td style="font-size:11px">'+esc(p.email)+'</td><td>'+esc(p.product)+'</td><td>'+esc(p.method)+'</td><td style="font-size:11px;font-family:monospace">'+esc(p.ref)+'</td><td><span class="ab '+(p.status==='approved'?'abg':p.status==='rejected'?'abr':'aba')+'">'+p.status+'</span></td><td style="white-space:nowrap"><button class="btn btn-acc btn-sm" onclick="approvePay(\''+p.id+'\')" style="margin-right:3px">✓</button><button class="btn btn-red btn-sm" onclick="rejectPay(\''+p.id+'\')">✗</button></td></tr>';
+  }).join(''));
+}
+function approvePay(id){
+  var p=payments.find(function(x){return x.id===id;});
+  if(p){p.status='approved';ss('payments',payments);refPays();refOv();toast('Approved! Send download link to: '+p.email);}
+}
+function rejectPay(id){
+  var p=payments.find(function(x){return x.id===id;});
+  if(p){p.status='rejected';ss('payments',payments);refPays();refOv();toast('Payment rejected.');}
+}
+
+/* ── PAY MODAL (public) ── */
+function openPayModal(name,price){
+  if(!settings.payments){toast('Payments are currently paused. Please contact us directly at zamanhargeysa@gmail.com');return;}
+  if(!analytics.conv)analytics.conv={opens:0,submits:0};
+  analytics.conv.opens=(analytics.conv.opens||0)+1;ss('analytics',analytics);
+  curProd=name;curPrice=price;
+  st('pm-title','Get '+name);
+  st('pm-sub','Pay $'+price+' via your preferred method. Submit your transaction reference and we\'ll verify within 1–4 hours and email your download link.');
+  document.querySelectorAll('.pmethod').forEach(function(m){m.classList.remove('sel');});
+  ce('pinst').classList.remove('show');
+  ce('psuccess').style.display='none';
+  ce('pform-wrap').style.display='block';
+  selMethod='';
+  ['pf-name','pf-email','pf-ref','pf-notes'].forEach(function(id){var e=ce(id);if(e)e.value='';});
+  ce('pay-modal').classList.add('open');
+}
+function selPay(method,el){
+  selMethod=method;
+  document.querySelectorAll('.pmethod').forEach(function(m){m.classList.remove('sel');});
+  if(el)el.classList.add('sel');
+  var pa=gs('payAcc',{zaad:'',evc:'',bank:'',paypal:''});
+  var fallback='Contact zamanhargeysa@gmail.com for account details';
+  var cfg={
+    zaad:{t:'Zaad Number',n:pa.zaad||fallback,note:'Send exactly $'+curPrice+' via Telesom Zaad. Copy the transaction reference from your receipt.'},
+    evc:{t:'EVC Plus Number',n:pa.evc||fallback,note:'Send exactly $'+curPrice+' via EVC Plus (Hormuud or Somtel). Enter the transaction reference below.'},
+    bank:{t:'Bank Transfer Details',n:pa.bank||fallback,note:'Transfer exactly $'+curPrice+'. Include your email in the transfer reference note.'},
+    paypal:{t:'PayPal Email',n:pa.paypal||fallback,note:'Send exactly $'+curPrice+' via PayPal Friends & Family. Include your email in the payment note.'}
+  };
+  var c=cfg[method];
+  if(c){st('pintitle',c.t);st('pinnum',c.n);st('pinnote',c.note);ce('pinst').classList.add('show');}
+}
+function submitPay(){
+  var nm=(ce('pf-name').value||'').trim();
+  var em=(ce('pf-email').value||'').trim();
+  var rf=(ce('pf-ref').value||'').trim();
+  if(!nm){toast('Please enter your full name');return;}
+  if(!em||!em.includes('@')){toast('Please enter a valid email address');return;}
+  if(!rf){toast('Please enter your transaction reference number');return;}
+  if(!selMethod){toast('Please select a payment method first');return;}
+  if(!analytics.conv)analytics.conv={opens:0,submits:0};
+  analytics.conv.submits=(analytics.conv.submits||0)+1;ss('analytics',analytics);
+  payments.push({id:'p'+Date.now(),date:new Date().toLocaleDateString(),name:nm,email:em,product:curProd,price:curPrice,method:selMethod,ref:rf,notes:(ce('pf-notes').value||'').trim(),status:'pending',at:Date.now()});
+  ss('payments',payments);
+  ce('pform-wrap').style.display='none';
+  ce('psuccess').style.display='block';
+  toast('Payment reference submitted! Admin will verify within 1–4 hours.');
+}
+
+/* ── PUBLIC PRODUCTS ── */
+function bdg(p){if(p.val)return 'pb-a';if(p.best)return 'pb-g';if(p.feat)return 'pb-p';if(p.free)return 'pb-b';return 'pb-g';}
+function bdgtxt(p){if(p.val)return 'Best Value';if(p.best)return 'Best Seller';if(p.feat)return 'New';if(p.free)return 'Free';return p.cat;}
+function renderProds(){
+  var g=ce('pub-pgrid');if(!g)return;
+  g.innerHTML=prods.map(function(p){
+    var btn=p.free
+      ?'<a href="#tracker" class="btn btn-acc" style="display:block;text-align:center;border-radius:99px">Start Free →</a>'
+      :'<button class="btn btn-dark" style="width:100%;justify-content:center;border-radius:99px" onclick="openPayModal(\''+esc(p.name)+'\',\''+p.price+'\')">Get '+(p.name.length>14?'This':esc(p.name))+' →</button>';
+    return '<div class="pcard rv"><div class="pimg" style="background:'+esc(p.bg||'#F0EDE6')+'">'+esc(p.ico)+'</div><div class="pbody"><span class="pbdg '+bdg(p)+'">'+bdgtxt(p)+'</span><h3>'+esc(p.name)+'</h3><p class="pdesc">'+esc(p.desc)+'</p><ul class="pfl">'+p.feats.map(function(f){return '<li>'+esc(f)+'</li>';}).join('')+'</ul><div class="ppr">'+(p.free?'<span class="ppfree">FREE</span>':'<span class="ppv">$'+p.price+'</span><span class="ppo">$'+p.old+'</span>')+'</div>'+btn+'</div></div>';
+  }).join('');
+  reObs();
+}
+
+/* ── ADMIN PRODUCTS ── */
+function rAdmProds(){
+  var g=ce('pa-grid');if(!g)return;
+  g.innerHTML=prods.map(function(p){
+    return '<div class="pac"><div class="paic">'+esc(p.ico)+'</div><div class="panm">'+esc(p.name)+'</div><div class="papr">'+(p.free?'FREE':'$'+p.price)+'</div><div class="paact"><button class="btn btn-outline btn-sm" onclick="editProd('+p.id+')">Edit</button><button class="btn btn-red btn-sm" onclick="delProd('+p.id+')">Del</button></div></div>';
+  }).join('');
+}
+function editProd(id){
+  var p=prods.find(function(x){return x.id===id;});if(!p)return;
+  editPid=id;
+  ce('pf-nm').value=p.name;ce('pf-pr').value=p.price;ce('pf-op').value=p.old||'';
+  ce('pf-cat').value=p.cat;ce('pf-desc').value=p.desc;
+  ce('pf-ico').value=p.ico;ce('pf-bg').value=p.bg||'#F0EDE6';
+  ce('pf-feats').value=(p.feats||[]).join('\n');
+  ce('pf-feat').checked=!!p.feat;ce('pf-best').checked=!!p.best;
+  ce('pf-val').checked=!!p.val;ce('pf-free').checked=!!p.free;
+  st('pf-title','Edit: '+p.name);
+  ce('prod-form').style.display='block';
+  ce('prod-form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function addProd(){
+  editPid=null;
+  ['pf-nm','pf-desc','pf-feats','pf-bg'].forEach(function(id){var e=ce(id);if(e)e.value='';});
+  ce('pf-ico').value='📦';ce('pf-pr').value=5;ce('pf-op').value=10;
+  ['pf-feat','pf-best','pf-val','pf-free'].forEach(function(id){var e=ce(id);if(e)e.checked=false;});
+  st('pf-title','Add New Product');
+  ce('prod-form').style.display='block';
+  ce('prod-form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function saveProd(){
+  var price=Math.min(20,Math.max(1,parseFloat(ce('pf-pr').value)||5));
+  var d={name:(ce('pf-nm').value||'Product').trim(),price:price,old:parseFloat(ce('pf-op').value)||price*2,cat:ce('pf-cat').value,desc:(ce('pf-desc').value||'').trim(),ico:(ce('pf-ico').value||'📦').trim(),bg:(ce('pf-bg').value||'#F0EDE6'),feats:(ce('pf-feats').value||'').split('\n').map(function(f){return f.trim();}).filter(Boolean),feat:ce('pf-feat').checked,best:ce('pf-best').checked,val:ce('pf-val').checked,free:ce('pf-free').checked};
+  if(editPid!==null){var i=prods.findIndex(function(x){return x.id===editPid;});if(i>=0)prods[i]=Object.assign({},prods[i],d);}
+  else prods.push(Object.assign({id:Date.now()},d));
+  ss('prods',prods);rAdmProds();renderProds();ce('prod-form').style.display='none';editPid=null;toast('Product saved!');
+}
+function delProd(id){if(!confirm('Delete this product?'))return;prods=prods.filter(function(x){return x.id!==id;});ss('prods',prods);rAdmProds();renderProds();toast('Product deleted.');}
+
+/* ── TESTIMONIALS ── */
+function renderTestis(){
+  var g=ce('pub-tgrid');if(!g)return;
+  g.innerHTML=testis.map(function(t){
+    var ini=t.name.split(' ').map(function(n){return n[0];}).join('');
+    return '<div class="tcard rv"><div class="tstars">'+Array(t.rating+1).join('★')+Array(6-t.rating).join('☆')+'</div><p class="ttxt">"'+esc(t.txt)+'"</p><div class="tauth"><div class="tav" style="background:'+t.color+'">'+esc(ini)+'</div><div><div class="tnm">'+esc(t.name)+'</div><div class="trole">'+esc(t.role)+'</div></div></div></div>';
+  }).join('');
+  reObs();
+}
+function rAdmTestis(){
+  var tb=ce('testi-body');if(!tb)return;
+  tb.innerHTML=testis.map(function(t,i){
+    return '<tr><td><strong>'+esc(t.name)+'</strong></td><td>'+esc(t.role)+'</td><td style="color:#F59E0B">'+Array(t.rating+1).join('★')+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-style:italic;color:var(--ink3)">"'+esc(t.txt.substring(0,55))+'..."</td><td><button class="btn btn-outline btn-sm" onclick="editTesti('+i+')" style="margin-right:5px">Edit</button><button class="btn btn-red btn-sm" onclick="delTesti('+i+')">Del</button></td></tr>';
+  }).join('');
+}
+function editTesti(i){editTid=i;var t=testis[i];ce('tf-nm').value=t.name;ce('tf-role').value=t.role;ce('tf-rat').value=t.rating;ce('tf-col').value=t.color;ce('tf-txt').value=t.txt;ce('testi-form').style.display='block';}
+function addTesti(){editTid=null;['tf-nm','tf-role','tf-txt'].forEach(function(id){var e=ce(id);if(e)e.value='';});var r=ce('tf-rat');if(r)r.value=5;ce('testi-form').style.display='block';}
+function saveTesti(){
+  var t={name:ce('tf-nm').value.trim(),role:ce('tf-role').value.trim(),rating:parseInt(ce('tf-rat').value)||5,color:ce('tf-col').value,txt:ce('tf-txt').value.trim()};
+  if(!t.name||!t.txt){toast('Name and review text are required');return;}
+  if(editTid!==null)testis[editTid]=t;else testis.push(t);
+  ss('testis',testis);rAdmTestis();renderTestis();ce('testi-form').style.display='none';editTid=null;toast('Review saved!');
+}
+function delTesti(i){if(!confirm('Delete this review?'))return;testis.splice(i,1);ss('testis',testis);rAdmTestis();renderTestis();toast('Deleted.');}
+
+/* ── PRICING ── */
+function renderPric(){
+  var g=ce('pub-prgrid');if(!g)return;
+  g.innerHTML=pric.map(function(p){
+    return '<div class="prcard'+(p.feat?' feat':'')+'">'+(p.feat?'<div class="prpop">Most Popular</div>':'')+'<div class="prtier">'+esc(p.tier)+'</div><h3>'+esc(p.name)+'</h3><div class="prv">$'+p.price+'</div><div class="prper">one-time &middot; lifetime access</div><ul class="prf">'+p.feats.map(function(f){return '<li>'+esc(f)+'</li>';}).join('')+'</ul><button class="'+(p.feat?'prbd':'prbl')+'" onclick="openPayModal(\''+esc(p.name)+' Plan\',\''+p.price+'\')">Get '+(p.feat?p.name:'Started')+' &rarr;</button></div>';
+  }).join('');
+}
+function savePricing(){
+  [1,2,3].forEach(function(n){
+    var p=Math.min(20,Math.max(1,parseInt(ce('pr'+n+'p').value)||1));
+    pric[n-1].name=ce('pr'+n+'n').value;pric[n-1].price=p;
+    pric[n-1].feats=(ce('pr'+n+'f').value||'').split('\n').map(function(f){return f.trim();}).filter(Boolean);
+  });
+  ss('pric',pric);renderPric();toast('Pricing updated and published!');
+}
+
+/* ── FAQ ── */
+function renderFaqs(){
+  var g=ce('pub-faq');if(!g)return;
+  g.innerHTML=faqs.map(function(f,i){
+    return '<div class="faqi" id="fq'+i+'"><button class="faqb" onclick="tfq(\'fq'+i+'\')">'+esc(f.q)+'</button><div class="faqa">'+esc(f.a)+'</div></div>';
+  }).join('');
+}
+function tfq(id){var el=ce(id);if(!el)return;var was=el.classList.contains('open');document.querySelectorAll('.faqi').forEach(function(i){i.classList.remove('open');});if(!was)el.classList.add('open');}
+function rAdmFaqs(){
+  var g=ce('faq-adm');if(!g)return;
+  g.innerHTML=faqs.map(function(f,i){
+    return '<div class="asect" style="padding:14px 18px;margin-bottom:9px"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px"><div style="flex:1"><div style="font-size:14px;font-weight:600;margin-bottom:5px;color:var(--ink)">'+esc(f.q)+'</div><div style="font-size:12px;color:var(--ink3);line-height:1.65">'+esc(f.a)+'</div></div><div style="display:flex;gap:6px;flex-shrink:0;margin-top:2px"><button class="btn btn-outline btn-sm" onclick="editFaqI('+i+')">Edit</button><button class="btn btn-red btn-sm" onclick="delFaqI('+i+')">Del</button></div></div></div>';
+  }).join('');
+}
+function editFaqI(i){var q=prompt('Question:',faqs[i].q);if(q===null)return;var a=prompt('Answer:',faqs[i].a);if(a===null)return;faqs[i]={q:q.trim(),a:a.trim()};ss('faqs',faqs);rAdmFaqs();renderFaqs();toast('FAQ updated!');}
+function addFaqI(){var q=prompt('Question:');if(!q)return;var a=prompt('Answer:');if(!a)return;faqs.push({q:q.trim(),a:a.trim()});ss('faqs',faqs);rAdmFaqs();renderFaqs();toast('FAQ item added!');}
+function delFaqI(i){if(!confirm('Delete this FAQ item?'))return;faqs.splice(i,1);ss('faqs',faqs);rAdmFaqs();renderFaqs();toast('Deleted.');}
+
+/* ── HOMEPAGE EDITOR ── */
+function saveHP(){
+  var h1=(ce('hp-h1').value||'').trim();
+  var h1i=(ce('hp-h1i').value||'').trim();
+  var sub=(ce('hp-sub').value||'').trim();
+  var hel=ce('hero-h1');
+  if(hel)hel.innerHTML=esc(h1)+'<br><em id="hero-h1i">'+esc(h1i)+'</em>';
+  var hs=ce('hero-sub');if(hs)hs.textContent=sub;
+  var c1=ce('hcta1');if(c1)c1.textContent=(ce('hp-c1').value||'').trim();
+  var c2=ce('hcta2');if(c2)c2.textContent=(ce('hp-c2').value||'').trim();
+  var at=ce('ann-txt');if(at)at.textContent=(ce('hp-ann').value||'').trim();
+  var al=ce('ann-lnk');if(al){al.textContent=(ce('hp-al').value||'').trim();al.href=(ce('hp-ah').value||'#');}
+  toast('Homepage updated and published!');
+}
+
+/* ── NEWSLETTER ── */
+function nlSub(){
+  var inp=ce('nl-em');if(!inp)return;
+  var email=(inp.value||'').trim().toLowerCase();
+  if(!email.includes('@')){inp.style.borderColor='var(--red)';setTimeout(function(){inp.style.borderColor='';},1500);return;}
+  if(subs.find(function(s){return s.email===email;})){toast('You are already subscribed!');return;}
+  subs.push({email:email,date:new Date().toLocaleDateString(),source:'Footer form'});
+  ss('subs',subs);inp.value='';
+  var btn=inp.nextElementSibling;
+  if(btn){btn.textContent='✓ Subscribed!';btn.style.background='var(--acc)';setTimeout(function(){btn.textContent='Subscribe →';btn.style.background='';},3000);}
+  toast('Subscribed! Thank you.');
+}
+function refNL(){
+  st('nl-cnt',subs.length);
+  var now=new Date(),ma=new Date(now-30*864e5);
+  st('nl-mo','+'+subs.filter(function(s){return new Date(s.date)>=ma;}).length);
+  var ns=ce('no-subs'),sb=ce('subs-body');
+  if(!subs.length){if(ns)ns.style.display='block';if(sb)sb.innerHTML='';}
+  else{if(ns)ns.style.display='none';if(sb)sb.innerHTML=subs.slice().reverse().map(function(s){return '<tr><td>'+esc(s.email)+'</td><td>'+esc(s.date)+'</td><td>'+esc(s.source||'—')+'</td></tr>';}).join('');}
+}
+function exportSubs(){
+  if(!subs.length){toast('No subscribers yet');return;}
+  var csv='Email,Date,Source\n'+subs.map(function(s){return '"'+s.email+'","'+s.date+'","'+(s.source||'')+'"';}).join('\n');
+  var blob=new Blob([csv],{type:'text/csv'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download='focusflow_subscribers.csv';a.click();
+  setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  toast('Subscribers exported!');
+}
+
+/* ── SEO ── */
+function saveSEO(){
+  var t=(ce('seo-t').value||'').trim();
+  if(t)document.title=t;
+  var d=document.querySelector('meta[name="description"]');
+  var dv=(ce('seo-d').value||'').trim();
+  if(d&&dv)d.content=dv;
+  toast('SEO settings saved!');
+}
+
+/* ── SETTINGS ── */
+function loadSettings(){
+  settings=gs('settings',DEFS.settings);
+  var map={maint:'maintenance',dark:'darkmode',ann:'annbar',trk:'tracker',pays:'payments'};
+  Object.keys(map).forEach(function(k){var el=ce('tog-'+k);if(el)el.classList.toggle('on',!!settings[map[k]]);});
+  var mn=ce('maint-note');if(mn)mn.textContent=settings.maintenance?'⚠️ Maintenance Mode is Active':'';
+}
+function togSet(key){
+  settings[key]=!settings[key];ss('settings',settings);
+  var rmap={maintenance:'maint',darkmode:'dark',annbar:'ann',tracker:'trk',payments:'pays'};
+  var el=ce('tog-'+rmap[key]);if(el)el.classList.toggle('on',settings[key]);
+  if(key==='darkmode')applyDark(settings.darkmode);
+  if(key==='annbar'){var ab=ce('ann-bar');if(ab)ab.style.display=settings.annbar?'':'none';}
+  if(key==='tracker'){var ts=ce('tracker');if(ts)ts.style.display=settings.tracker?'':'none';}
+  var mn=ce('maint-note');if(mn)mn.textContent=settings.maintenance?'⚠️ Maintenance Mode is Active':'';
+  toast(key.charAt(0).toUpperCase()+key.slice(1)+' '+(settings[key]?'enabled':'disabled'));
+}
+function loadPayAcc(){
+  var pa=gs('payAcc',{zaad:'',evc:'',bank:'',paypal:''});
+  [{k:'zaad',id:'pa-zaad'},{k:'evc',id:'pa-evc'},{k:'bank',id:'pa-bank'},{k:'paypal',id:'pa-pp'}].forEach(function(m){var e=ce(m.id);if(e)e.value=pa[m.k]||'';});
+}
+function savePayAcc(){
+  ss('payAcc',{zaad:(ce('pa-zaad').value||'').trim(),evc:(ce('pa-evc').value||'').trim(),bank:(ce('pa-bank').value||'').trim(),paypal:(ce('pa-pp').value||'').trim()});
+  toast('Payment account numbers saved!');
+}
+function resetAll(){
+  ['prods','testis','pric','faqs','settings','analytics','payments','subs','habits','payAcc','adminPw','maintPw','trkUsers','isTU'].forEach(function(k){localStorage.removeItem('ff_'+k);});
+  location.reload();
+}
+
+/* ── CONTACT FORM ── */
+function handleCt(e){
+  e.preventDefault();
+  var form=e.target;
+  var btn=form.querySelector('button[type="submit"]');
+  var fspId=(ce('seo-fsp')&&ce('seo-fsp').value||'').trim();
+  if(!fspId||fspId.length<6){
+    ce('ct-suc').classList.add('show');form.reset();
+    toast('Message recorded! For guaranteed delivery, also email zamanhargeysa@gmail.com');return;
+  }
+  if(btn){btn.textContent='Sending...';btn.disabled=true;}
+  fetch('https://formspree.io/f/'+fspId,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}})
+    .then(function(r){
+      if(r.ok){ce('ct-suc').classList.add('show');form.reset();}
+      else toast('Send failed. Please email zamanhargeysa@gmail.com directly.');
+    })
+    .catch(function(){toast('Network error. Please email zamanhargeysa@gmail.com directly.');})
+    .finally(function(){if(btn){btn.textContent='Send Message →';btn.disabled=false;}});
+}
+
+/* ── FREE HABIT TRACKER ── */
+function switchTab(name,el){
+  ['habits','calendar','stats'].forEach(function(t){var e=ce('tab-'+t);if(e)e.style.display=t===name?'block':'none';});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('act');});
+  if(el)el.classList.add('act');
+  if(name==='calendar')renderCal();
+  if(name==='stats')renderStats();
+}
+function renderHabits(){
+  var g=ce('hlist');if(!g)return;
+  if(!habits.length){g.innerHTML='<div style="text-align:center;padding:20px;color:var(--ink3);font-size:14px">No habits yet. Add your first habit below! 👆</div>';return;}
+  g.innerHTML=habits.map(function(h){
+    var done=!!(h.comp&&h.comp[TKEY]);
+    var streak=calcStreak(h);
+    return '<div class="hrow"><div class="hchk'+(done?' done':'')+'" onclick="togHabit('+h.id+')" title="'+(done?'Mark incomplete':'Mark complete')+'">'+(done?'✓':'')+'</div><div class="hnm" style="'+(done?'text-decoration:line-through;color:var(--ink3)':'')+'">'+esc(h.name)+'</div>'+(streak>1?'<span class="hstrk">🔥 '+streak+'d</span>':'')+'<button class="hdel" onclick="delHabit('+h.id+')" title="Delete habit" aria-label="Delete habit">×</button></div>';
+  }).join('');
+  var cu=gs('trkUsers',0);
+  if(!gs('isTU',false)){ss('isTU',true);ss('trkUsers',cu+1);}
+}
+function togHabit(id){
+  var h=habits.find(function(x){return x.id===id;});if(!h)return;
+  if(!h.comp)h.comp={};
+  h.comp[TKEY]=!h.comp[TKEY];
+  if(!h.comp[TKEY])delete h.comp[TKEY];
+  ss('habits',habits);renderHabits();
+}
+function addHabit(){
+  var inp=ce('nadd');if(!inp)return;
+  var name=(inp.value||'').trim();
+  if(!name){inp.style.borderColor='var(--red)';setTimeout(function(){inp.style.borderColor='';},1200);return;}
+  if(habits.length>=20){toast('Max 20 habits on free plan. Upgrade to Pro for unlimited!');return;}
+  habits.push({id:Date.now(),name:name,created:Date.now(),comp:{}});
+  ss('habits',habits);inp.value='';renderHabits();toast('Habit added!');
+}
+function delHabit(id){
+  if(!confirm('Delete this habit and all its history?'))return;
+  habits=habits.filter(function(x){return x.id!==id;});
+  ss('habits',habits);renderHabits();toast('Habit removed.');
+}
+function calcStreak(h){
+  if(!h.comp)return 0;
+  var s=0;var d=new Date();
+  for(var i=0;i<365;i++){
+    var k=d.toISOString().split('T')[0];
+    if(h.comp[k])s++;else if(i>0)break;
+    d.setDate(d.getDate()-1);
+  }
+  return s;
+}
+function renderCal(){
+  var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  si('cal-day-lbls',days.map(function(d){return '<div class="cdlbl">'+d+'</div>';}).join(''));
+  var fd=new Date(calY,calM,1).getDay();
+  var dim=new Date(calY,calM+1,0).getDate();
+  var today=new Date();
+  var cells='';
+  for(var i=0;i<fd;i++)cells+='<div class="cday emp"></div>';
+  for(var d=1;d<=dim;d++){
+    var dt=new Date(calY,calM,d);
+    var k=dt.toISOString().split('T')[0];
+    var isT=(d===today.getDate()&&calM===today.getMonth()&&calY===today.getFullYear());
+    var hasD=habits.some(function(h){return h.comp&&h.comp[k];});
+    cells+='<div class="cday'+(isT?' today':'')+(hasD?' hd':'')+'" title="'+k+'">'+d+'</div>';
+  }
+  si('cal-days',cells);
+  st('cal-lbl',new Date(calY,calM).toLocaleString('default',{month:'long',year:'numeric'}));
+}
+function calPrev(){calM--;if(calM<0){calM=11;calY--;}renderCal();}
+function calNext(){calM++;if(calM>11){calM=0;calY++;}renderCal();}
+function renderStats(){
+  var total=habits.length;
+  var done=habits.filter(function(h){return h.comp&&h.comp[TKEY];}).length;
+  var best=habits.reduce(function(mx,h){return Math.max(mx,calcStreak(h));},0);
+  var rate=total?Math.round(done/total*100):0;
+  st('sc-tot',total);st('sc-don',done);st('sc-str',best);st('sc-rt',rate+'%');
+  var bl=ce('hbars');
+  if(!bl)return;
+  if(!habits.length){bl.innerHTML='<div style="color:var(--ink3);font-size:13px">Add habits to see your progress here.</div>';return;}
+  bl.innerHTML=habits.map(function(h){
+    var all=Object.keys(h.comp||{}).length;
+    var days=Math.max(1,Math.round((Date.now()-h.created)/864e5));
+    var pct=Math.round(Math.min(100,all/days*100));
+    return '<div class="hbrow"><div class="hbname" title="'+esc(h.name)+'">'+esc(h.name.substring(0,16))+(h.name.length>16?'…':'')+'</div><div class="hbbar"><div class="hbfill" style="width:'+pct+'%"></div></div><div class="hbpct">'+pct+'%</div></div>';
+  }).join('');
+}
+
+/* ── SCROLL REVEAL ── */
+var rObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+function reObs(){document.querySelectorAll('.rv:not(.on)').forEach(function(el){rObs.observe(el);});}
+
+/* ── NAV ── */
+window.addEventListener('scroll',function(){var n=ce('nav');if(n)n.classList.toggle('sc',scrollY>20);});
+function toggleMob(){var m=ce('mob-menu');if(m)m.classList.toggle('open');}
+function closeMob(){var m=ce('mob-menu');if(m)m.classList.remove('open');}
+
+/* ── LAUNCH READINESS: no console errors ── */
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',function(){
+  // Apply saved settings
+  settings=gs('settings',DEFS.settings);
+  if(settings.darkmode)applyDark(true);
+  if(!settings.annbar){var ab=ce('ann-bar');if(ab)ab.style.display='none';}
+  if(!settings.tracker){var ts=ce('tracker');if(ts)ts.style.display='none';}
+
+  // Check maintenance mode
+  checkMaint();
+
+  // Track this visit
+  trackSession();
+
+  // Render all public sections
+  renderProds();
+  renderTestis();
+  renderPric();
+  renderFaqs();
+  renderHabits();
+
+  // Set tracker date label
+  var td=ce('trk-date');
+  if(td)td.textContent=new Date().toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+
+  // Start scroll reveal
+  document.querySelectorAll('.rv').forEach(function(el){rObs.observe(el);});
+
+  // Maintenance footer note
+  var mn=ce('maint-note');
+  if(mn&&settings.maintenance)mn.textContent='⚠️ Maintenance Mode is currently active';
+});
+</script>
+</body>
+</html>
